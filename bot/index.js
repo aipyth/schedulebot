@@ -60,8 +60,21 @@ bot.on('message', (msg) => {
   bot.sendMessage(chatId, 'Received your message');
 });
 
-const sleep = () => new Promise(resolve: () => setTimeout ) {
-    
-}
 
-setTimeout()
+function repeatWhile(timeout) {
+	this.then = (cb) => this.cb = cb
+	this.if = (statement) => {
+		this.statement = statement
+		return this
+	}
+	const interval = setInterval(() => {
+		try {
+			if(this.statement) {
+				cb(() => clearInterval(interval))
+			}
+		} catch(err) {
+			cb(interval, err)
+		}
+	}, timeout)
+	return this
+}
