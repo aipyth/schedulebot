@@ -49,8 +49,27 @@ function getElectives() {
     return electives;
 }
 
+function getTimings() {
+    return doc['timings'];
+}
+
+function getTimingsDate() {
+    let tmgs = [];
+    for (t of doc['timings']) {
+        const ts = t.split(':');
+        let now = new Date();
+        now.setHours(ts[0], ts[1]);
+        tmgs.push(now);
+    }
+    return tmgs;
+}
+
+// console.log(getTimings());
+
 module.exports = {
     getWeekNumber,
     getDateEvents,
     getElectives,
+    getTimings,
+    getTimingsDate,
 }

@@ -4,6 +4,8 @@ services:
     build: 
       context: redis
       dockerfile: redis.Dockerfile
+    volumes:
+      - redis-data:/data
 
   bot:
     build: ./bot
@@ -15,6 +17,9 @@ services:
       - .env
     volumes:
       - ./bot:/app
-      - ./schedule.yml:/app/schedule.yml
+      # - ./schedule.yml:/app/schedule.yml
     depends_on:
       - redis
+
+volumes:
+  redis-data:
