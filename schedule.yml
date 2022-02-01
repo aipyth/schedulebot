@@ -1,0 +1,216 @@
+weekn: 2
+start-date: "Mon Jan 31 2022"
+end-date: "Mon May 30 2022"
+timezone-delta: 2
+timings:
+  - '8:30'
+  - '10:25'
+  - '12:20'
+  - '14:15'
+  - '16:10'
+week1:
+  monday:
+    - Computer-Networks: 
+        type: Lection
+        elective: true
+        link: none
+    - Internet Resource Security:
+        type: Laboratory
+        elective: true
+        link: none
+    - Decisions Models and Methods:
+        type: Laboratory
+        elective: false
+        link: none
+    - English:
+        type: Practice
+        elective: false
+        link: none
+    - Functional Analysis:
+        type: Practice
+        elective: false
+        link: none
+  tuesday:
+    - Special sections of complexity theory:
+        type: Lection
+        elective: true
+        link: none
+    - Statistics:
+        type: Lection
+        elective: false
+        link: none
+    - Calculation methods:
+        type: Lection
+        elective: false
+        link: none
+    - Functional Analysis:
+        type: Lection
+        elective: false
+        link: none
+    - Theoretical and numerical algorithms in cryptology:
+        type: Lection
+        elective: true
+        link: none
+  wednesday:
+    - Opening
+    - Statistics:
+        type: Practice
+        elective: false
+        link: none
+    - Calculation methods:
+        type: Laboratory
+        elective: false
+        link: none
+    - Theory of information and encoding:
+        type: Lection
+        elective: true
+        link: none
+    - Theory of information and encoding:
+        type: Practice
+        elective: true
+        link: none
+  thursday:
+    - Cloud data processing technologies:
+        type: Lection
+        elective: true
+        link: none
+    - Internet resource security:
+        type: Lection
+        elective: true
+        link: none
+    - Computer graphics:
+        type: Lection
+        elective: true
+        link: none
+    - Civil safety:
+        type: Lection
+        elective: false
+        link: none
+    - Decision methods and models:
+        type: Lection
+        elective: false
+        link: none
+  friday:
+    - Computer graphics:
+        type: Laboratory
+        elective: true
+        link: none
+    - Infomation safety:
+        type: Practice
+        elective: false
+        link: none
+    - Opening
+    - Theoretical and numerical algorithms in cryptology:
+        type: Practice
+        elective: true
+        link: none
+  saturday:
+    - Opening
+    - Cloud and data processing technologies:
+        type: Laboratory
+        elective: true
+        link: none
+    
+week2:
+  monday:
+    - Computer-Networks: 
+        type: Lection
+        elective: true
+        link: none
+    - Internet Resource Security:
+        type: Laboratory
+        elective: true
+        link: none
+    - Decisions Models and Methods:
+        type: Laboratory
+        elective: false
+        link: none
+    - English:
+        type: Practice
+        elective: false
+        link: none
+    - Functional Analysis:
+        type: Practice
+        elective: false
+        link: none
+  tuesday:
+    - Special sections of complexity theory:
+        type: Lection
+        elective: true
+        link: none
+    - Statistics:
+        type: Lection
+        elective: false
+        link: none
+    - Calculation methods:
+        type: Lection
+        elective: false
+        link: none
+    - Functional Analysis:
+        type: Lection
+        elective: false
+        link: none
+    - Theoretical and numerical algorithms in cryptology:
+        type: Lection
+        elective: true
+        link: none
+  wednesday:
+    - Special sections of complexity theory:
+        type: Practice
+        elective: true
+        link: none
+    - Statistics:
+        type: Practice
+        elective: false
+        link: none
+    - Calculation methods:
+        type: Laboratory
+        elective: false
+        link: none
+    - Theory of information and encoding:
+        type: Lection
+        elective: true
+        link: none
+    - Computer networks:
+        type: Laboratory
+        elective: true
+        link: none
+  thursday:
+    - Cloud data processing technologies:
+        type: Lection
+        elective: true
+        link: none
+    - Internet resource security:
+        type: Lection
+        elective: true
+        link: none
+    - Computer graphics:
+        type: Lection
+        elective: true
+        link: none
+    - Information safety:
+        type: Lection
+        elective: false
+        link: none
+    - Decision methods and models:
+        type: Lection
+        elective: false
+        link: none
+  friday:
+    - Computer graphics:
+        type: Laboratory
+        elective: true
+        link: none
+    - Opening
+    - Opening
+    - Theoretical and numerical algorithms in cryptology:
+        type: Laboratory
+        elective: true
+        link: none
+  saturday:
+    - Opening
+    - Cloud and data processing technologies:
+        type: Laboratory
+        elective: true
+        link: none
+    
