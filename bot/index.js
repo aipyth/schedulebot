@@ -1,67 +1,65 @@
 const TelegramBot = require('node-telegram-bot-api');
-const yaml = require('js-yaml');
-const fs = require('fs');
+const redis = require('redis');
 
-// Load schedule document
-// try {
-    const doc = yaml.load(fs.readFileSync('./schedule.yml', 'utf8'));
-    console.log(doc);
-    // console.log(doc.timings)
-    // console.log(doc.week1.monday)
-// } catch (e) {
-//     throw e;
-// }
+const schedule = require('./schedule.js');
 
-const weekdaysint = {
-    '1': "monday",
-    '2': "tuesday",
-    '3': "wednesday",
-    '4': "thursday",
-    '5': "friday",
-    '6': "saturday",
+const electiveButtonRegexp = /elective:(.+)/;
+const electiveButtonMockup = 'elective:';
+function buildElectivesKeyboard(elected=[]) {
+    const electives = schedule.getElectives();
+    let kb = [];
+    for (elect of Object.keys(electives)) {
+        if (elected.includes(elect)) {
+            kb.push([{text: '✅ ' + elect, callback_data: electiveButtonMockup + elect}]);
+        } else {
+            kb.push([{text: elect, callback_data: electiveButtonMockup + elect}]);
+        }
+    }
+    return kb;
 }
 
-function weeksBetween(d1, d2) {
-    return (d2 - d1) / (7 * 24 * 60 * 60 * 1000);
-}
 
-function getWeekNumber(d) {
-    return Math.floor(weeksBetween(new Date(doc['start-date']), d) % doc['weekn']) + 1;
-}
-
-function getDateEvents(time) {
-    const localized = new Date(time.getTime() + doc['timezone-delta'] * 60 * 60000);
-    const weekNum = getWeekNumber(localized); 
-    const weekdays = doc['week' + weekNum];
-    const day = weekdaysint[localized.getDay().toString()];
-    return weekdays[day];
-}
-
-console.log(new Date().getTimezoneOffset())
-console.log("Day today: ", new Date());
-console.log("Events today: ", getDateEvents(new Date()));
-console.log("Events on next friday: " , getDateEvents(new Date("Fri Feb 11 2022")));
-
+const rds = redis.createClient({
+    url: `redis://${process.env.REDIS_HOST}:${process.env.REDIS_PORT}/0`,
+});
+rds.on('error', (err) => console.log('Redis Client Error', err));
+console.log(`redis connects to redis://${process.env.REDIS_HOST}:${process.env.REDIS_PORT}/0`);
 
 const token = process.env.BOT_TOKEN;
 if (token == undefined) { throw "Invalid environment variable BOT_TOKEN"; }
 
-const bot = new TelegramBot(token, {polling: true});
+const bot = new TelegramBot(token, { polling: true });
 
+bot.on("polling_error", console.log);
 
-bot.onText(/\/echo (.+)/, (msg, match) => {
-  const chatId = msg.chat.id;
-  const resp = match[1];
-  bot.sendMessage(chatId, resp);
+bot.onText(/\/start/, msg => {
+    const chatId = msg.chat.id;
+    bot.sendMessage(chatId, `Hi. Lets choose your electives firstly:`, {
+        reply_markup: {
+            inline_keyboard: buildElectivesKeyboard(),
+        }
+    });
 });
 
-bot.on('message', (msg) => {
-  const chatId = msg.chat.id;
-  bot.sendMessage(chatId, 'Received your message');
-});
+bot.on('callback_query', async (callbackQuery) => {
+    if (!rds.isOpen) { await rds.connect() }
+    console.log(callbackQuery)
 
-const sleep = () => new Promise(resolve: () => setTimeout ) {
-    
-}
+    const elected = electiveButtonRegexp.exec(callbackQuery.data)[1]
+    const rdsKey = `elective:${callbackQuery.from.id}`
+    const alreadyElected = await rds.sMembers(rdsKey);
+    if (alreadyElected.includes(elected)) {
+        await rds.sRem(rdsKey, elected);
+    } else {
+        await rds.sAdd(rdsKey, elected);
+    }
+    bot.editMessageReplyMarkup({
+        inline_keyboard: buildElectivesKeyboard(await rds.sMembers(rdsKey))
+    }, {
+        chat_id: callbackQuery.from.id,
+        message_id: callbackQuery.message.message_id
+    })
+})
 
-setTimeout()
+process.once('SIGINT', () => bot.stopPolling());
+process.once('SIGTERM', () => bot.stopPolling());

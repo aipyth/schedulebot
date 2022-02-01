@@ -10,15 +10,15 @@ timings:
   - '16:10'
 week1:
   monday:
-    - Computer-Networks: 
+    - Computer networks: 
         type: Lection
         elective: true
         link: none
-    - Internet Resource Security:
+    - Internet resource security:
         type: Laboratory
         elective: true
         link: none
-    - Decisions Models and Methods:
+    - Decisions models and methods:
         type: Laboratory
         elective: false
         link: none
@@ -26,7 +26,7 @@ week1:
         type: Practice
         elective: false
         link: none
-    - Functional Analysis:
+    - Functional analysis:
         type: Practice
         elective: false
         link: none
@@ -43,7 +43,7 @@ week1:
         type: Lection
         elective: false
         link: none
-    - Functional Analysis:
+    - Functional analysis:
         type: Lection
         elective: false
         link: none
@@ -106,22 +106,22 @@ week1:
         link: none
   saturday:
     - Opening
-    - Cloud and data processing technologies:
+    - Cloud data processing technologies:
         type: Laboratory
         elective: true
         link: none
     
 week2:
   monday:
-    - Computer-Networks: 
+    - Computer networks: 
         type: Lection
         elective: true
         link: none
-    - Internet Resource Security:
+    - Internet resource security:
         type: Laboratory
         elective: true
         link: none
-    - Decisions Models and Methods:
+    - Decisions models and methods:
         type: Laboratory
         elective: false
         link: none
@@ -129,7 +129,7 @@ week2:
         type: Practice
         elective: false
         link: none
-    - Functional Analysis:
+    - Functional analysis:
         type: Practice
         elective: false
         link: none
@@ -146,7 +146,7 @@ week2:
         type: Lection
         elective: false
         link: none
-    - Functional Analysis:
+    - Functional analysis:
         type: Lection
         elective: false
         link: none
@@ -209,7 +209,7 @@ week2:
         link: none
   saturday:
     - Opening
-    - Cloud and data processing technologies:
+    - Cloud data processing technologies:
         type: Laboratory
         elective: true
         link: none

@@ -4,12 +4,13 @@ services:
     build: 
       context: redis
       dockerfile: redis.Dockerfile
-    ports:
-      - 6379:6379
 
   bot:
     build: ./bot
     restart: unless-stopped
+    environment:
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
     env_file:
       - .env
     volumes:
