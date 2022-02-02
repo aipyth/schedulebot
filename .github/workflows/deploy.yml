@@ -28,15 +28,13 @@ jobs:
       - name: "Copying env files"
         run: |
           echo ${{secrets.BOT_TOKEN}} > ./.env
-          echo ${{secrets.REDIS_HOST}} >> ./.env
-          echo ${{secrets.REDIS_PORT}} >> ./.env
 
       - name: "Building new images..."
-        run: docker-compose build --force-rm
+        run: docker-compose -f docker-compose.production.yml build --force-rm
       
       - name: "Recreating services..."
-        run: docker-compose up -d --remove-orphans 
+        run: docker-compose -f docker-compose.production.yml up -d --remove-orphans 
         
       - name: "Removing unused images after build and recreate..."
-        run: docker image prune -f
+        run: docker-compose -f docker-compose.production.yml prune -f
 
