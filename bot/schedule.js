@@ -12,6 +12,7 @@ const weekdaysint = {
     '6': "saturday",
 }
 
+
 function weeksBetween(d1, d2) {
     return (d2 - d1) / (7 * 24 * 60 * 60 * 1000);
 }
@@ -20,23 +21,23 @@ function getWeekNumber(d) {
     return Math.floor(weeksBetween(new Date(doc['start-date']), d) % doc['weekn']) + 1;
 }
 
-function getDateEvents(time) {
+function getDateEvents(time, group) {
     const localized = new Date(time.getTime() + doc['timezone-delta'] * 60 * 60000);
     const weekNum = getWeekNumber(localized); 
-    const weekdays = doc['week' + weekNum];
+    const weekdays = doc[group]['week' + weekNum];
     const day = weekdaysint[localized.getDay().toString()];
     return weekdays[day];
 }
 
-// console.log("Day today: ", new Date());
-// console.log("Events today: ", getDateEvents(new Date()));
-// console.log("Events on next friday: " , getDateEvents(new Date("Fri Feb 11 2022")));
+function getGroups() {
+    return doc['groups'];
+}
 
-function getElectives() {
+function getElectives(group) {
     const wn = doc['weekn'];
     let electives = {};
     for (let n = 1; n <= wn; n++) {
-        const currWeek = doc['week' + n];
+        const currWeek = doc[group]['week' + n];
         for (let i = 1; i <= 6; i++) {
             for (item of currWeek[weekdaysint[i.toString()]]) {
                 const eventName = Object.keys(item)[0]
@@ -69,16 +70,16 @@ function nearestTimeIdx(toDate, byMinutes) {
     const times = getTimingsDate();
     const minutes = (msec) => msec > 0 ? msec / 60000 : Infinity;
     const index = times.findIndex(time => {
-        console.log(`${time} - ${toDate} < ${byMinutes}`);
+        // console.log(`[nearestTime] ${time} - ${toDate}`);
         return minutes(time - toDate) <= byMinutes
     });
-    console.log(`[nearest time] ${index} -> ${times[index]}`);
     return index;
 }
 
 module.exports = {
     getWeekNumber,
     getDateEvents,
+    getGroups,
     getElectives,
     getTimings,
     getTimingsDate,

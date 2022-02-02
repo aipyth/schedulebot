@@ -1,8 +1,9 @@
 module.exports = {
     repeatWhile(timeout) {
+        this.till = () => 0
         this.then = (cb) => {
             this.cb = cb
-            this.func()
+            return this
         }
         this.if = (statement) => {
             this.statement = statement
@@ -12,17 +13,29 @@ module.exports = {
             let res;
             try {
                 res = this.statement()
-                console.log('repeatWhile condition', res);
+                console.log(`repeatWhile condition ${res} at ${new Date()}`);
                 if (res) {
-                    // this.cb(res, () => clearInterval(interval))
                     this.cb(res)
                 }
             } catch(err) {
-                console.log(err);
-                // this.cb(res, interval, err)
+                console.error(err);
             }
         }
-        const interval = setInterval(this.func, timeout)
+        this.atSeconds = (seconds) => {
+            this.till = () => {
+                const now = new Date();
+                const millisTill = new Date(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours(), now.getMinutes(), seconds % 60, 0) - now;
+                console.log('till', millisTill, millisTill + 1000 * 60)
+                return millisTill < 0 ? millisTill + 1000 * 60 : millisTill;
+            }
+            return this
+        }
+        this.run = () => {
+            setTimeout(() => {
+                this.func()
+                this.interval = setInterval(this.func, timeout)
+            }, this.till())
+        }
         return this
-    }
+    },
 }
