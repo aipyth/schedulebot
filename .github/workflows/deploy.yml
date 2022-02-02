@@ -36,5 +36,5 @@ jobs:
         run: docker-compose -f docker-compose.production.yml up -d --remove-orphans 
         
       - name: "Removing unused images after build and recreate..."
-        run: docker-compose -f docker-compose.production.yml prune -f
+        run: docker image prune -f
 
