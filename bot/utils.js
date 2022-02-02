@@ -1,20 +1,28 @@
 module.exports = {
-    
     repeatWhile(timeout) {
-        this.then = (cb) => this.cb = cb
+        this.then = (cb) => {
+            this.cb = cb
+            this.func()
+        }
         this.if = (statement) => {
             this.statement = statement
             return this
         }
-        const interval = setInterval(() => {
+        this.func = () => {
+            let res;
             try {
-                if(this.statement) {
-                    this.cb(() => clearInterval(interval))
+                res = this.statement()
+                console.log('repeatWhile condition', res);
+                if (res) {
+                    // this.cb(res, () => clearInterval(interval))
+                    this.cb(res)
                 }
             } catch(err) {
-                this.cb(interval, err)
+                console.log(err);
+                // this.cb(res, interval, err)
             }
-        }, timeout)
+        }
+        const interval = setInterval(this.func, timeout)
         return this
     }
 }

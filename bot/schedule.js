@@ -58,13 +58,23 @@ function getTimingsDate() {
     for (t of doc['timings']) {
         const ts = t.split(':');
         let now = new Date();
-        now.setHours(ts[0], ts[1]);
+        now.setHours(ts[0], ts[1], 0);
+        now = new Date(now.getTime() - doc['timezone-delta'] * 60 * 60000);
         tmgs.push(now);
     }
     return tmgs;
 }
 
-// console.log(getTimings());
+function nearestTimeIdx(toDate, byMinutes) {
+    const times = getTimingsDate();
+    const minutes = (msec) => msec > 0 ? msec / 60000 : Infinity;
+    const index = times.findIndex(time => {
+        console.log(`${time} - ${toDate} < ${byMinutes}`);
+        return minutes(time - toDate) <= byMinutes
+    });
+    console.log(`[nearest time] ${index} -> ${times[index]}`);
+    return index;
+}
 
 module.exports = {
     getWeekNumber,
@@ -72,4 +82,5 @@ module.exports = {
     getElectives,
     getTimings,
     getTimingsDate,
+    nearestTimeIdx,
 }

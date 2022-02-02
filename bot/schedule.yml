@@ -78,10 +78,7 @@ week1:
         type: Lection
         elective: true
         link: none
-    - Computer graphics:
-        type: Lection
-        elective: true
-        link: none
+    - Opening
     - Civil safety:
         type: Lection
         elective: false
@@ -92,7 +89,7 @@ week1:
         link: none
   friday:
     - Computer graphics:
-        type: Laboratory
+        type: Lection
         elective: true
         link: none
     - Infomation safety:
@@ -102,6 +99,10 @@ week1:
     - Opening
     - Theoretical and numerical algorithms in cryptology:
         type: Practice
+        elective: true
+        link: none
+    - Computer graphics:
+        type: Laboratory
         elective: true
         link: none
   saturday:
@@ -184,10 +185,7 @@ week2:
         type: Lection
         elective: true
         link: none
-    - Computer graphics:
-        type: Lection
-        elective: true
-        link: none
+    - Opening
     - Information safety:
         type: Lection
         elective: false
@@ -198,12 +196,16 @@ week2:
         link: none
   friday:
     - Computer graphics:
-        type: Laboratory
+        type: Lection
         elective: true
         link: none
     - Opening
     - Opening
     - Theoretical and numerical algorithms in cryptology:
+        type: Laboratory
+        elective: true
+        link: none
+    - Computer graphics:
         type: Laboratory
         elective: true
         link: none
