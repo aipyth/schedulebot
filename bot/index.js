@@ -16,8 +16,15 @@ const usersKey = 'users';
 const userGroupKey = 'usergroup:';
 
 const devContactTag = '@aipyth';
+const repoLink = 'https://github.com/aipyth/schedulebot';
 
 const sendLinkBeforeMinutes = 1;
+
+
+/* THIS PROJECT CONTAINS A LOT OF CODE WRITTEN IN A HASTE
+ * DO NOT HESITATE TO REVIEW AND REFACTOR IT
+ */
+
 
 const buildElectivesKeyboard = (group, elected=[]) => {
     const electives = schedule.getElectives(group);
@@ -72,19 +79,25 @@ const start = async () => {
 
     bot.on("polling_error", console.log);
 
+    const askGroup = async (chatId) => {
+        const group = await rds.get(userGroupKey + chatId);
+        bot.sendMessage(chatId, `Lets choose your group:`, {
+            reply_markup: {
+                inline_keyboard: group ? buildGroupsKeyboard([group]) : buildGroupsKeyboard(),
+            }
+        });
+    }
+
     bot.onText(/\/start/, async (msg) => {
         const chatId = msg.chat.id;
         rds.sAdd(usersKey, chatId).catch((reason) => {
             console.error(reason);
             bot.sendMessage(chatId, `Could not add you to database. Contact ${devContactTag}`);
         })
+        bot.sendMessage(chatId, `Hi! Here you can get your schedule and get link one minute before the lesson.
 
-        const group = await rds.get(userGroupKey + chatId);
-        bot.sendMessage(chatId, `Hi. Lets choose your group:`, {
-            reply_markup: {
-                inline_keyboard: group ? buildGroupsKeyboard([group]) : buildGroupsKeyboard(),
-            }
-        });
+This bot is opensource and you can view it here ${repoLink} as well as add your group schedule by creating pull-request.`);
+        await askGroup(chatId);
     });
 
 
@@ -149,7 +162,11 @@ const start = async () => {
 
     bot.onText(/\/today/, async (msg) => {
         const group = await rds.get(userGroupKey + msg.chat.id);
-        console.log(`group ${group}`);
+        if (!group) {
+            bot.sendMessage(msg.chat.id, `You haven't set your group`);
+            await askGroup(msg.chat.id);
+            return;
+        }
 
         const events = schedule.getDateEvents(new Date(), group);
         if (events == undefined) {
@@ -189,6 +206,7 @@ const start = async () => {
     const sendUsersUpcomingEvent = async (users, eventNumber) => {
         for (const chatId of users) {
             const group = await rds.get(userGroupKey + chatId);
+            if (!group) { continue }
             const event = schedule.getDateEvents(new Date(), group)[eventNumber];
             if (typeof(event) == 'string' && event != 'Opening') {
                 bot.sendMessage(chatId, event);
