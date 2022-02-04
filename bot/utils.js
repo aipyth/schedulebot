@@ -13,8 +13,8 @@ module.exports = {
             let res;
             try {
                 res = this.statement()
-                console.log(`repeatWhile condition ${res} at ${new Date()}`);
                 if (res) {
+                    console.log(`repeatWhile condition ${res} at ${new Date()}`);
                     this.cb(res)
                 }
             } catch(err) {

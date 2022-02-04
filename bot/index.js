@@ -231,7 +231,7 @@ This bot is opensource and you can view it here ${repoLink} as well as add your 
         });
     })
     
-    bot.onText(/\/week/, async (msg) => {
+    bot.onText(/\/nextweek/, async (msg) => {
         const group = await rds.get(userGroupKey + msg.chat.id);
         if (!group) {
             bot.sendMessage(msg.chat.id, `You haven't set your group`);
@@ -251,7 +251,31 @@ This bot is opensource and you can view it here ${repoLink} as well as add your 
                 text += `***${day.toDateString()}*** \n${await wrapEvents(events, msg.chat.id)} \n`;
             }
         }
-        console.log(text);
+        bot.sendMessage(msg.chat.id, text, {
+            parse_mode: 'Markdown',
+        });
+    })
+
+    bot.onText(/\/week/, async (msg) => {
+        const group = await rds.get(userGroupKey + msg.chat.id);
+        if (!group) {
+            bot.sendMessage(msg.chat.id, `You haven't set your group`);
+            await askGroup(msg.chat.id);
+            return;
+        }
+
+        const today = new Date();
+        const shift = (8 - today.getDay()) % 8;
+        let text = '';
+        for (let daynum = 0; daynum < shift; daynum++) {
+            const day = new Date(today.getTime() + (daynum * 24 * 60 * 60 * 1000));
+            const events = schedule.getDateEvents(day, group);
+            if (events == undefined) {
+                text += `${day.toDateString()} No events \n`;
+            } else {
+                text += `***${day.toDateString()}*** \n${await wrapEvents(events, msg.chat.id)} \n`;
+            }
+        }
         bot.sendMessage(msg.chat.id, text, {
             parse_mode: 'Markdown',
         });
