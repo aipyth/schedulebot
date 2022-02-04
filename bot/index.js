@@ -88,16 +88,19 @@ const start = async () => {
         });
     }
 
-    bot.onText(/\/start/, async (msg) => {
+    bot.onText(/\/start/, (msg) => {
         const chatId = msg.chat.id;
-        rds.sAdd(usersKey, chatId).catch((reason) => {
-            console.error(reason);
-            bot.sendMessage(chatId, `Could not add you to database. Contact ${devContactTag}`);
-        })
         bot.sendMessage(chatId, `Hi! Here you can get your schedule and get link one minute before the lesson.
 
 This bot is opensource and you can view it here ${repoLink} as well as add your group schedule by creating pull-request.`);
-        await askGroup(chatId);
+        rds.sAdd(usersKey, chatId).catch((reason) => {
+            console.error(reason);
+            bot.sendMessage(chatId, `Could not add you to database. Contact ${devContactTag}`);
+        }).then(async (value) => {
+            if (value == 0) {
+                await askGroup(chatId);
+            }
+        })
     });
 
 
@@ -160,19 +163,7 @@ This bot is opensource and you can view it here ${repoLink} as well as add your 
         }
     })
 
-    bot.onText(/\/today/, async (msg) => {
-        const group = await rds.get(userGroupKey + msg.chat.id);
-        if (!group) {
-            bot.sendMessage(msg.chat.id, `You haven't set your group`);
-            await askGroup(msg.chat.id);
-            return;
-        }
-
-        const events = schedule.getDateEvents(new Date(), group);
-        if (events == undefined) {
-            bot.sendMessage(msg.chat.id, `No events for today`);
-            return;
-        }
+    const wrapEvents = async (events, userId) => {
         const tmgs = schedule.getTimings();
         let text = '';
         for (let i = 0; i < events.length; i++) {
@@ -183,20 +174,87 @@ This bot is opensource and you can view it here ${repoLink} as well as add your 
                 eventName = events[i];
             } else {
                 const name = Object.keys(events[i])[0];
-                const key = electedEventsKey + msg.from.id;
+                const key = electedEventsKey + userId;
                 try {
                     const choose = await rds.sIsMember(key, name);
                     eventName = choose || !(events[i][name]['elective']) ? 
-                        `${name} - ${events[i][name]['type']}`
+                        `${name} – ${events[i][name]['type']}`
                         : "";
                 } catch (e) {
                     console.log(e);
                     bot.sendMessage(msg.chat.id, `Error gettings your electives. Contact ${devContactTag}`);
                 }
             } 
-            text += `${tmgs[i]} ${eventName} \n`;
+            text += `${tmgs[i]}\t ${eventName} \n`;
         }
-        bot.sendMessage(msg.chat.id, text);
+        return text;
+    }
+
+    bot.onText(/\/today/, async (msg) => {
+        const group = await rds.get(userGroupKey + msg.chat.id);
+        if (!group) {
+            bot.sendMessage(msg.chat.id, `You haven't set your group`);
+            await askGroup(msg.chat.id);
+            return;
+        }
+
+        const today = new Date();
+        const events = schedule.getDateEvents(today, group);
+        if (events == undefined) {
+            bot.sendMessage(msg.chat.id, `No events for today`);
+            return;
+        }
+        const text = await wrapEvents(events, msg.chat.id);
+        console.log(`text ${text}`);
+        bot.sendMessage(msg.chat.id, text, {
+            parse_mode: 'MarkdownV2',
+        });
+    })
+
+    bot.onText(/\/tomorrow/, async (msg) => {
+        const group = await rds.get(userGroupKey + msg.chat.id);
+        if (!group) {
+            bot.sendMessage(msg.chat.id, `You haven't set your group`);
+            await askGroup(msg.chat.id);
+            return;
+        }
+
+        const tomorrow = new Date(new Date().getTime() + (24 * 60 * 60 * 1000));
+        const events = schedule.getDateEvents(tomorrow, group);
+        if (events == undefined) {
+            bot.sendMessage(msg.chat.id, `No events for tomorrow`);
+            return;
+        }
+        const text = await wrapEvents(events, msg.chat.id);
+        bot.sendMessage(msg.chat.id, text, {
+            parse_mode: 'MarkdownV2',
+        });
+    })
+    
+    bot.onText(/\/week/, async (msg) => {
+        const group = await rds.get(userGroupKey + msg.chat.id);
+        if (!group) {
+            bot.sendMessage(msg.chat.id, `You haven't set your group`);
+            await askGroup(msg.chat.id);
+            return;
+        }
+
+        const today = new Date();
+        const shift = (8 - today.getDay()) % 8;
+        let text = '';
+        for (let daynum = 0; daynum < 7; daynum++) {
+            const day = new Date(today.getTime() + ((shift + daynum) * 24 * 60 * 60 * 1000));
+            const events = schedule.getDateEvents(day, group);
+            if (events == undefined) {
+                text += `${day.toDateString()} No events \n`;
+            } else {
+                text += `***${day.toDateString()}*** \n${await wrapEvents(events, msg.chat.id)} \n`;
+            }
+        }
+        console.log(text);
+        bot.sendMessage(msg.chat.id, text, {
+            parse_mode: 'Markdown',
+        });
     })
 
     process.once('SIGINT', () => bot.stopPolling());
@@ -218,7 +276,9 @@ This bot is opensource and you can view it here ${repoLink} as well as add your 
                     bot.sendMessage(chatId, `Error gettings your electives. Contact ${devContactTag}`);
                 }).then((value) => {
                     if (value || !(event[name]['elective'])) {
-                        bot.sendMessage(chatId, `${name} \n ${event[name]['type']} \n ${event[name]['link']}`);
+                        bot.sendMessage(chatId, `**${name}** \n *${event[name]['type']}* \n ${event[name]['link']}`, {
+                            parse_mode: 'MarkdownV2',
+                        });
                     }
                 })
             } 

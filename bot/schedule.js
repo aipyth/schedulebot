@@ -77,6 +77,7 @@ function nearestTimeIdx(toDate, byMinutes) {
 }
 
 module.exports = {
+    weekdaysint,
     getWeekNumber,
     getDateEvents,
     getGroups,

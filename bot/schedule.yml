@@ -3,7 +3,7 @@ start-date: "Mon Jan 31 2022"
 end-date: "Mon May 30 2022"
 timezone-delta: 2
 timings:
-  - '8:30'
+  - '08:30'
   - '10:25'
   - '12:20'
   - '14:15'
@@ -140,10 +140,10 @@ FI-91:
           type: Practice
           elective: false
           link: https://us02web.zoom.us/j/2880207160?pwd=N3lsWFpURnY3TlFrZm9VWnFRaThHZz09
-      - Functional analysis:
+      - Civil safety:
           type: Practice
           elective: false
-          link: http://meet.google.com/rib-piqv-ygf
+          link: not given
     tuesday:
       - Special sections of complexity theory:
           type: Lection
