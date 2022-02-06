@@ -236,20 +236,20 @@ FI-92:
       - Computer networks: 
           type: Lection
           elective: true
-          link: none
+          link: http://meet.google.com/ueo-kuny-ivs
       - English:
           type: Pracice
           elective: false
-          link: none
+          link: https://us02web.zoom.us/j/2880207160?pwd=N3lsWFpURnY3TlFrZm9VWnFRaThHZz09
       - Opening
       - Functional analysis:
           type: Practice
           elective: false
-          link: none
+          link: http://meet.google.com/rib-piqv-ygf
       - Decision methods and models:
           type: Laboratory
           elective: false
-          link: none
+          link: https://us04web.zoom.us/j/72454445261?pwd=nCww5t92WksszZnOFiu2osFmBLv2Vn.1
     tuesday:
       - Special sections of complexity theory:
           type: Lection
@@ -258,26 +258,26 @@ FI-92:
       - Statistics:
           type: Lection
           elective: false
-          link: none
+          link: https://us02web.zoom.us/j/2493443851?pwd=Tkk2ZVNDZm1uY0VVTGtoVlN1YnMwdz09
       - Calculation methods:
           type: Lection
           elective: false
-          link: none
+          link: https://meet.google.com/ykp-duop-jrd
       - Functional analysis:
           type: Lection
           elective: false
-          link: none
+          link: https://us02web.zoom.us/j/88161244599?pwd=TSszSUFkN0FNNEljdGJDS0c2c0ZSUT09
       - Opening
     wednesday:
       - Opening
       - Calculation methods:
           type: Laboratory
           elective: false
-          link: none
+          link: https://meet.google.com/fex-reap-brc
       - Statistics:
           type: Pracice
           elective: false
-          link: none
+          link: https://us02web.zoom.us/j/2493443851?pwd=Tkk2ZVNDZm1uY0VVTGtoVlN1YnMwdz09
       - Theory of information and encoding:
           type: Lection
           elective: true
@@ -299,11 +299,11 @@ FI-92:
       - Civil safety:
           type: Lection
           elective: false
-          link: none
+          link: https://us04web.zoom.us/j/73249264180?pwd=bjVOMzRKWHF4c1djOHBua3A0QktrQT09
       - Decision methods and models:
           type: Lection
           elective: false
-          link: none
+          link: https://us04web.zoom.us/j/79088020076?pwd=z349HECHkAYoB0jnzAEqLcwHfzE5cG.1
     friday:
       - Computer graphics:
           type: Laboratory
@@ -317,7 +317,7 @@ FI-92:
       - Information safety:
           type: Practice
           elective: false
-          link: none
+          link: https://us04web.zoom.us/j/9254317545?pwd=TmJiQUl5dUN4NEZGZ1FpNWhFQ0p0dz09
       - Computer graphics:
           type: Lection
           elective: true
@@ -334,11 +334,11 @@ FI-92:
       - Computer networks: 
           type: Lection
           elective: true
-          link: none
+          link: http://meet.google.com/ueo-kuny-ivs
       - English:
           type: Practice
           elective: false
-          link: none
+          link: https://us02web.zoom.us/j/2880207160?pwd=N3lsWFpURnY3TlFrZm9VWnFRaThHZz09
       - Opening
       - Civil safety:
           type: Pracice
@@ -347,7 +347,7 @@ FI-92:
       - Decision methods and models:
           type: Laboratory
           elective: false
-          link: none
+          link: https://us04web.zoom.us/j/72454445261?pwd=nCww5t92WksszZnOFiu2osFmBLv2Vn.1
     tuesday:
       - Special sections of complexity theory:
           type: Lection
@@ -356,15 +356,15 @@ FI-92:
       - Statistics:
           type: Lection
           elective: false
-          link: none
+          link: https://us02web.zoom.us/j/2493443851?pwd=Tkk2ZVNDZm1uY0VVTGtoVlN1YnMwdz09
       - Calculation methods:
           type: Lection
           elective: false
-          link: none
+          link: https://meet.google.com/ykp-duop-jrd
       - Functional analysis:
           type: Lection
           elective: false
-          link: none
+          link: https://us02web.zoom.us/j/88161244599?pwd=TSszSUFkN0FNNEljdGJDS0c2c0ZSUT09
       - Opening
     wednesday:
       - Special sections of complexity theory:
@@ -374,11 +374,11 @@ FI-92:
       - Calculation methods:
           type: Laboratory
           elective: false
-          link: none
+          link: https://meet.google.com/fex-reap-brc
       - Statistics:
           type: Practice
           elective: false
-          link: none
+          link: https://us02web.zoom.us/j/2493443851?pwd=Tkk2ZVNDZm1uY0VVTGtoVlN1YnMwdz09
       - Theory of information and encoding:
           type: Lection
           elective: true
@@ -386,7 +386,7 @@ FI-92:
       - Computer networks:
           type: Laboratory
           elective: true
-          link: none
+          link: http://meet.google.com/cbr-hhyv-jsj
     thursday:
       - Cloud data processing technologies:
           type: Lection
@@ -404,7 +404,7 @@ FI-92:
       - Decision methods and models:
           type: Lection
           elective: false
-          link: none
+          link: https://us04web.zoom.us/j/79088020076?pwd=z349HECHkAYoB0jnzAEqLcwHfzE5cG.1
     friday:
       - Computer graphics:
           type: Laboratory
