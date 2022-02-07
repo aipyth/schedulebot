@@ -207,7 +207,7 @@ This bot is opensource and you can view it here ${repoLink} as well as add your 
         const text = await wrapEvents(events, msg.chat.id);
         console.log(`text ${text}`);
         bot.sendMessage(msg.chat.id, text, {
-            parse_mode: 'MarkdownV2',
+            parse_mode: 'Markdown',
         });
     })
 
@@ -227,7 +227,7 @@ This bot is opensource and you can view it here ${repoLink} as well as add your 
         }
         const text = await wrapEvents(events, msg.chat.id);
         bot.sendMessage(msg.chat.id, text, {
-            parse_mode: 'MarkdownV2',
+            parse_mode: 'Markdown',
         });
     })
     
@@ -301,7 +301,7 @@ This bot is opensource and you can view it here ${repoLink} as well as add your 
                 }).then((value) => {
                     if (value || !(event[name]['elective'])) {
                         bot.sendMessage(chatId, `**${name}** \n *${event[name]['type']}* \n ${event[name]['link']}`, {
-                            parse_mode: 'MarkdownV2',
+                            parse_mode: 'Markdown',
                         });
                     }
                 })
@@ -314,6 +314,7 @@ This bot is opensource and you can view it here ${repoLink} as well as add your 
         .atSeconds(1)
         .if(() => {
             const idx = schedule.nearestTimeIdx(new Date(), sendLinkBeforeMinutes);
+            console.log(`[eventCheck] idx = ${idx}`);
             return idx < 0 ? undefined : idx;
         }).then(async (res) => {
             rds.sMembers(usersKey).catch((reason) => {
