@@ -1,11 +1,14 @@
 {
   "name": "schedulebot",
-  "version": "1.0.0",
+  "version": "0.2",
   "description": "Telegram Bot to notify user about upcoming schedule events",
   "main": "index.js",
   "repository": "https://github.com/aipyth/schedulebot",
   "author": "aipyth",
   "license": "MIT",
+  "scripts": {
+    "start": "node index.js"
+  },
   "dependencies": {
     "js-yaml": "^4.1.0",
     "node-telegram-bot-api": "^0.56.0",

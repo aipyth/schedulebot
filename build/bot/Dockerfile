@@ -1,12 +1,15 @@
-FROM node
+FROM node:16-alpine AS base
+
+RUN apk update && apk add --no-cache libc6-compat
+RUN corepack enable && corepack prepare pnpm@7.4.1 --activate 
 
 WORKDIR /app
 
-COPY package.json .
-COPY yarn.lock .
+COPY src/bot/package.json .
+COPY src/bot/pnpm-lock.yaml .
 
-RUN yarn install
+RUN pnpm install
 
-COPY . .
+COPY src/bot .
 
-CMD [ "node", "index.js" ]
+ENTRYPOINT [ "pnpm", "start" ]
