@@ -2,22 +2,24 @@ version: '3'
 services:
   redis:
     build: 
-      context: redis
+      context: build/redis
       dockerfile: redis.Dockerfile
     volumes:
       - redis-data:/data
 
   bot:
-    build: ./bot
+    build:
+      context: .
+      dockerfile: build/bot/Dockerfile
     restart: unless-stopped
     environment:
       REDIS_HOST: redis
       REDIS_PORT: 6379
+      SCHEDULE_FILE_PATH: /schedule.yml
     env_file:
       - .env
     volumes:
-      - ./bot:/app
-      # - ./schedule.yml:/app/schedule.yml
+      - conf/schedule.yml:/schedule.yml
     depends_on:
       - redis
 

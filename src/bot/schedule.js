@@ -1,6 +1,9 @@
 const yaml = require('js-yaml');
 const fs = require('fs');
 
+const scheduleFilePath = process.env['SCHEDULE_FILE_PATH']
+if (!scheduleFilePath) { throw new Error('no SCHEDULE_FILE_PATH specified') }
+
 const doc = yaml.load(fs.readFileSync('./schedule.yml', 'utf8'));
 
 const weekdaysint = {
