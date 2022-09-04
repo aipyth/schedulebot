@@ -1,17 +1,16 @@
 weekn: 2
-start-date: "Mon Jan 31 2022"
-end-date: "Mon May 30 2022"
-timezone-delta: 2
+start-date: "Fri Sep 02 2022"
+end-date: "Sun Sep 04 2022"
+timezone: Europe/Kiev
 timings:
-  - '08:30'
-  - '10:25'
-  - '12:20'
-  - '14:15'
-  - '16:10'
+  - '21:45'
+  - '21:46'
+  - '21:47'
+  - '21:48'
+  - '21:49'
 
 groups:
   - FI-91
-  - FI-92
 
 FI-91:
   week1:
@@ -121,6 +120,27 @@ FI-91:
           type: Laboratory
           elective: true
           link: https://meet.google.com/zai-ayru-kap
+    sunday:
+      - Special sections of complexity theory:
+          type: Lection
+          elective: true
+          link: not given
+      - Statistics:
+          type: Lection
+          elective: false
+          link: https://us02web.zoom.us/j/2493443851?pwd=Tkk2ZVNDZm1uY0VVTGtoVlN1YnMwdz09
+      - Calculation methods:
+          type: Lection
+          elective: false
+          link: https://meet.google.com/ykp-duop-jrd
+      - Functional analysis:
+          type: Lection
+          elective: false
+          link: https://us02web.zoom.us/j/88161244599?pwd=TSszSUFkN0FNNEljdGJDS0c2c0ZSUT09
+      - Theoretical and numerical algorithms in cryptology:
+          type: Lection
+          elective: true
+          link: https://meet.google.com/ymm-kasa-oos
       
   week2:
     monday:
@@ -230,31 +250,11 @@ FI-91:
           elective: true
           link: https://meet.google.com/zai-ayru-kap
 
-FI-92:
-  week1:
-    monday:
-      - Computer networks: 
-          type: Lection
-          elective: true
-          link: http://meet.google.com/tpg-khxf-zbk
-      - English:
-          type: Pracice
-          elective: false
-          link: https://us02web.zoom.us/j/2880207160?pwd=N3lsWFpURnY3TlFrZm9VWnFRaThHZz09
-      - Opening
-      - Functional analysis:
-          type: Practice
-          elective: false
-          link: http://meet.google.com/rib-piqv-ygf
-      - Decision methods and models:
-          type: Laboratory
-          elective: false
-          link: https://us04web.zoom.us/j/72454445261?pwd=nCww5t92WksszZnOFiu2osFmBLv2Vn.1
-    tuesday:
+    sunday:
       - Special sections of complexity theory:
           type: Lection
           elective: true
-          link: none
+          link: not given
       - Statistics:
           type: Lection
           elective: false
@@ -267,162 +267,7 @@ FI-92:
           type: Lection
           elective: false
           link: https://us02web.zoom.us/j/88161244599?pwd=TSszSUFkN0FNNEljdGJDS0c2c0ZSUT09
-      - Opening
-    wednesday:
-      - Opening
-      - Calculation methods:
-          type: Laboratory
-          elective: false
-          link: https://meet.google.com/fex-reap-brc
-      - Statistics:
-          type: Pracice
-          elective: false
-          link: https://us02web.zoom.us/j/2493443851?pwd=Tkk2ZVNDZm1uY0VVTGtoVlN1YnMwdz09
-      - Theory of information and encoding:
+      - Theoretical and numerical algorithms in cryptology:
           type: Lection
           elective: true
-          link: none
-      - Theory of information and encoding:
-          type: Practice
-          elective: true
-          link: none
-    thursday:
-      - Cloud data processing technologies:
-          type: Lection
-          elective: true
-          link: none
-      - Internet resource security:
-          type: Lection
-          elective: true
-          link: none
-      - Opening
-      - Civil safety:
-          type: Lection
-          elective: false
-          link: https://us04web.zoom.us/j/73249264180?pwd=bjVOMzRKWHF4c1djOHBua3A0QktrQT09
-      - Decision methods and models:
-          type: Lection
-          elective: false
-          link: https://us04web.zoom.us/j/79088020076?pwd=z349HECHkAYoB0jnzAEqLcwHfzE5cG.1
-    friday:
-      - Computer graphics:
-          type: Laboratory
-          elective: true
-          link: none
-      - Internet resource security:
-          type: Laboratory
-          elective: true
-          link: none
-      - Opening
-      - Information safety:
-          type: Practice
-          elective: false
-          link: https://us04web.zoom.us/j/9254317545?pwd=TmJiQUl5dUN4NEZGZ1FpNWhFQ0p0dz09
-      - Computer graphics:
-          type: Lection
-          elective: true
-          link: none
-    saturday:
-      - Opening
-      - Cloud data processing technologies:
-          type: Laboratory
-          elective: true
-          link: none
-      
-  week2:
-    monday:
-      - Computer networks: 
-          type: Lection
-          elective: true
-          link: http://meet.google.com/tpg-khxf-zbk
-      - English:
-          type: Practice
-          elective: false
-          link: https://us02web.zoom.us/j/2880207160?pwd=N3lsWFpURnY3TlFrZm9VWnFRaThHZz09
-      - Opening
-      - Civil safety:
-          type: Pracice
-          elective: false
-          link: none
-      - Decision methods and models:
-          type: Laboratory
-          elective: false
-          link: https://us04web.zoom.us/j/72454445261?pwd=nCww5t92WksszZnOFiu2osFmBLv2Vn.1
-    tuesday:
-      - Special sections of complexity theory:
-          type: Lection
-          elective: true
-          link: none
-      - Statistics:
-          type: Lection
-          elective: false
-          link: https://us02web.zoom.us/j/2493443851?pwd=Tkk2ZVNDZm1uY0VVTGtoVlN1YnMwdz09
-      - Calculation methods:
-          type: Lection
-          elective: false
-          link: https://meet.google.com/ykp-duop-jrd
-      - Functional analysis:
-          type: Lection
-          elective: false
-          link: https://us02web.zoom.us/j/88161244599?pwd=TSszSUFkN0FNNEljdGJDS0c2c0ZSUT09
-      - Opening
-    wednesday:
-      - Special sections of complexity theory:
-          type: Practice
-          elective: true
-          link: none
-      - Calculation methods:
-          type: Laboratory
-          elective: false
-          link: https://meet.google.com/fex-reap-brc
-      - Statistics:
-          type: Practice
-          elective: false
-          link: https://us02web.zoom.us/j/2493443851?pwd=Tkk2ZVNDZm1uY0VVTGtoVlN1YnMwdz09
-      - Theory of information and encoding:
-          type: Lection
-          elective: true
-          link: none
-      - Computer networks:
-          type: Laboratory
-          elective: true
-          link: http://meet.google.com/cbr-hhyv-jsj
-    thursday:
-      - Cloud data processing technologies:
-          type: Lection
-          elective: true
-          link: none
-      - Internet resource security:
-          type: Lection
-          elective: true
-          link: none
-      - Opening
-      - Information safety:
-          type: Lection
-          elective: false
-          link: none
-      - Decision methods and models:
-          type: Lection
-          elective: false
-          link: https://us04web.zoom.us/j/79088020076?pwd=z349HECHkAYoB0jnzAEqLcwHfzE5cG.1
-    friday:
-      - Computer graphics:
-          type: Laboratory
-          elective: true
-          link: none
-      - Internet resource security:
-          type: Laboratory
-          elective: true
-          link: none
-      - Opening
-      - Opening
-      - Computer graphics:
-          type: Lection
-          elective: true
-          link: none
-    saturday:
-      - Opening
-      - Cloud data processing technologies:
-          type: Laboratory
-          elective: true
-          link: none
+          link: https://meet.google.com/ymm-kasa-oos

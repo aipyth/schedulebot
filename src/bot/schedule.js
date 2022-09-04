@@ -1,12 +1,14 @@
-const yaml = require('js-yaml');
-const fs = require('fs');
+const { readFileSync } = require("fs");
+const { load } = require('js-yaml')
+const tz = require('date-fns-tz')
 
 const scheduleFilePath = process.env['SCHEDULE_FILE_PATH']
 if (!scheduleFilePath) { throw new Error('no SCHEDULE_FILE_PATH specified') }
 
-const doc = yaml.load(fs.readFileSync('./schedule.yml', 'utf8'));
+const doc = load(readFileSync(scheduleFilePath, 'utf8'));
 
 const weekdaysint = {
+  '0': "sunday",
   '1': "monday",
   '2': "tuesday",
   '3': "wednesday",
@@ -25,9 +27,11 @@ function getWeekNumber(d) {
 }
 
 function getDateEvents(time, group) {
-  const localized = new Date(time.getTime() + doc['timezone-delta'] * 60 * 60000);
+  const localized = tz.utcToZonedTime(time, doc['timezone'])
   const weekNum = getWeekNumber(localized); 
-  const weekdays = doc[group]['week' + weekNum];
+  const docgroup = doc[group]
+  if (!docgroup) { throw new Error(group + "group does not exists") }
+  const weekdays = docgroup['week' + weekNum];
   const day = weekdaysint[localized.getDay().toString()];
   return weekdays[day];
 }
@@ -63,7 +67,7 @@ function getTimingsDate() {
     const ts = t.split(':');
     let now = new Date();
     now.setHours(ts[0], ts[1], 0);
-    now = new Date(now.getTime() - doc['timezone-delta'] * 60 * 60000);
+    now = tz.zonedTimeToUtc(now, doc['timezone'])
     tmgs.push(now);
   }
   return tmgs;
@@ -73,7 +77,7 @@ function nearestTimeIdx(toDate, byMinutes) {
   const times = getTimingsDate();
   const minutes = (msec) => msec > 0 ? msec / 60000 : Infinity;
   const index = times.findIndex(time => {
-    // console.log(`[nearestTime] ${time} - ${toDate}`);
+    console.log(`[nearestTime] ${time} - ${toDate}`);
     return minutes(time - toDate) <= byMinutes
   });
   return index;
@@ -81,6 +85,7 @@ function nearestTimeIdx(toDate, byMinutes) {
 
 module.exports = {
   weekdaysint,
+  weeksBetween,
   getWeekNumber,
   getDateEvents,
   getGroups,

@@ -1,15 +1,19 @@
-FROM node:16-alpine AS base
+FROM node:18-alpine AS base
 
-RUN apk update && apk add --no-cache libc6-compat
-RUN corepack enable && corepack prepare pnpm@7.4.1 --activate 
+# RUN apk update && apk add --no-cache libc6-compat
+# RUN corepack enable && corepack prepare pnpm@7.4.1 --activate 
+
+# RUN curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm
+
+# RUN apk add --no-cache curl \
+#     && curl -sL https://unpkg.com/@pnpm/self-installer | node
 
 WORKDIR /app
 
-COPY src/bot/package.json .
-COPY src/bot/pnpm-lock.yaml .
+COPY src/bot/package.json src/bot/yarn.lock ./
 
-RUN pnpm install
+RUN yarn install
 
 COPY src/bot .
 
-ENTRYPOINT [ "pnpm", "start" ]
+ENTRYPOINT [ "yarn", "run", "start" ]

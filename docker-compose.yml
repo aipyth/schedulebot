@@ -19,7 +19,7 @@ services:
     env_file:
       - .env
     volumes:
-      - conf/schedule.yml:/schedule.yml
+      - ./conf/schedule.yml:/schedule.yml
     depends_on:
       - redis
 
