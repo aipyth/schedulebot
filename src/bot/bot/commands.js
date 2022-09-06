@@ -7,7 +7,8 @@ const storage = require('../storage');
 const repoLink = 'https://github.com/aipyth/schedulebot';
 
 /**
-  * @param {TelegramBot.ChatId} chatId
+  * @param {TelegramBot} bot
+  * @returns {(chatId:TelegramBot.ChatId) => Promise}
   */
 const askGroup = (bot) => async (chatId) => {
   const group = await storage.getUserGroup(chatId)
@@ -50,6 +51,7 @@ const wrapEvents = async (events, userId) => {
 
 /**
   * @param {TelegramBot.Message} msg
+  * @returns {(chatId:TelegramBot.ChatId) => Promise}
   */
 const onStart = (bot) => async (msg) => {
   const chatId = msg.chat.id;
@@ -65,19 +67,23 @@ This bot is opensource and you can view it here ${repoLink} as well as add your 
     }
   } catch (e) {
     console.error(e);
-    bot.sendMessage(chatId, `Could not add you to database.`);
+    bot.sendMessage(chatId, `Could not add you to the database.`);
   }
 }
 
+/**
+  * @param {TelegramBot.Message} msg
+  * @returns {(chatId:TelegramBot.ChatId) => Promise}
+  */
 const group = (bot) => async (msg) => {
   const chatId = msg.chat.id
-  // console.log(chatId)
   await storage.deleteUserGroup(chatId)
   await askGroup(bot)(chatId);
 }
 
 /**
   * @param {TelegramBot.Message} msg
+  * @returns {(chatId:TelegramBot.ChatId) => Promise}
   */
 const today = (bot) => async (msg) => {
   const group = await storage.getUserGroup(msg.chat.id)
@@ -102,6 +108,7 @@ const today = (bot) => async (msg) => {
 
 /**
   * @param {TelegramBot.Message} msg
+  * @returns {(chatId:TelegramBot.ChatId) => Promise}
   */
 const tomorrow = (bot) => async (msg) => {
   const group = await storage.getUserGroup(msg.chat.id)
@@ -125,6 +132,7 @@ const tomorrow = (bot) => async (msg) => {
 
 /**
   * @param {TelegramBot.Message} msg
+  * @returns {(chatId:TelegramBot.ChatId) => Promise}
   */
 const nextWeek = (bot) => async (msg) => {
   const group = await storage.getUserGroup(msg.chat.id)
@@ -153,6 +161,7 @@ const nextWeek = (bot) => async (msg) => {
 
 /**
   * @param {TelegramBot.Message} msg
+  * @returns {(chatId:TelegramBot.ChatId) => Promise}
   */
 const thisWeek = (bot) => async (msg) => {
   const group = await storage.getUserGroup(msg.chat.id)
@@ -161,7 +170,7 @@ const thisWeek = (bot) => async (msg) => {
     await askGroup(bot)(msg.chat.id);
     return;
   }
-
+  // TODO: whatatafack is going here?
   const today = new Date();
   const shift = (8 - today.getDay()) % 8;
   let text = '';
@@ -180,6 +189,9 @@ const thisWeek = (bot) => async (msg) => {
 }
 
 const callback_processers = {
+/**
+  * @type {(bot:TelegramBot) => (callbackQuery:import("node-telegram-bot-api").CallbackQuery) => Promise}
+  */
   [keyboard.electiveButtonRegexp]: (bot) => async (callbackQuery) => {
     const elected = RegExp(keyboard.electiveButtonRegexp)
       .exec(callbackQuery.data)[1]
@@ -200,6 +212,9 @@ const callback_processers = {
     })
   },
 
+/**
+  * @type {(bot:TelegramBot) => (callbackQuery:import("node-telegram-bot-api").CallbackQuery) => Promise}
+  */
   [keyboard.groupsButtonRegexp]: (bot) => async (callbackQuery) => {
     const chosen = RegExp(keyboard.groupsButtonRegexp)
       .exec(callbackQuery.data)[1];

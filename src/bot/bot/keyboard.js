@@ -5,6 +5,11 @@ const electiveButtonPrefix = 'elective:';
 const groupsButtonRegexp = 'groups:(.+)';
 const groupsButtonPrefix = 'groups:';
 
+/** 
+  * @param {string} group
+  * @param {string[]} elected list of already elected courses that
+  *                   will have a `confirmed` emoji near the name
+  */
 const buildElectivesKeyboard = (group, elected=[]) => {
   const electives = schedule.getElectives(group);
   let kb = [];
@@ -24,6 +29,9 @@ const buildElectivesKeyboard = (group, elected=[]) => {
   return kb;
 }
 
+/** 
+  * @param {string[]} chosen
+  */
 const buildGroupsKeyboard = (chosen=[]) => {
   const groups = schedule.getGroups();
   let kb = [];
