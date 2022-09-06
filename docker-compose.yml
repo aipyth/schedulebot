@@ -15,11 +15,11 @@ services:
     environment:
       REDIS_HOST: redis
       REDIS_PORT: 6379
-      SCHEDULE_FILE_PATH: /schedule.yml
+      SCHEDULE_FILE_PATH: /configuration/schedule.yml
     env_file:
       - .env
     volumes:
-      - conf/schedule.yml:/schedule.yml
+      - ./conf:/configuration
     depends_on:
       - redis
 

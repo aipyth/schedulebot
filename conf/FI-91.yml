@@ -1,0 +1,186 @@
+week1:
+  monday:
+    - Machine Learning Methods: 
+        type: Lecture
+        elective: true
+        link:
+    - Complex information protection systems:
+        type: Practice
+        elective: true
+        link:
+    - Risk Theory:
+        type: Lecture
+        elective: true
+        link:
+    - Machine Learning Methods:
+        type: Laboratory
+        elective: true
+        link:
+
+  tuesday:
+    - Computer Systems Architecture:
+        type: Lecture
+        elective: true
+        link:
+    - Computer Systems Architecture:
+        type: Laboratory
+        elective: true
+        link:
+    - Markov Models and Their Applications:
+        type: Lecture
+        elective: true
+        link:
+    - Markov Models and Their Applications:
+        type: Practice
+        elective: true
+        link:
+    - English:
+        type: Practice
+        elective: false
+        link:
+  wednesday:
+    - Design of Highly Loaded Systems:
+        type: Lecture
+        elective: true
+        link:
+    - Design of Highly Loades Systems:
+        type: Laboratory
+        elective: true
+        link:
+    - Stohastic Process:
+        type: Lecture
+        elective: true
+        link:
+    - Stohastic Process:
+        type: Practice
+        elective: true
+        link:
+    - System Analysis:
+        type: Lecture
+        elective: false
+        link:
+  thursday:
+    - Control Theory:
+        type: Lecture
+        elective: false
+        link:
+    - Fundamentals of Quantum Information:
+        type: Lecture
+        elective: true
+        link:
+    - The Basics of Economics:
+        type: Lecture
+        elective: false
+        link:
+    - Systems and Tools of Interactive Analysis:
+        type: Lecture
+        elective: true
+        link:
+    - Systems and Tools of Interactive Analysis:
+        type: Laboratory
+        elective: true
+        link:
+  friday:
+    - Window
+    - Complex Information Protection Systems:
+        type: Lecture
+        elective: true
+        link:
+    - Pattern Recognition:
+        type: Lecture
+        elective: false
+        link:
+    - Pattern Recognition:
+        type: Practice
+        elective: false
+        link:
+  saturday:
+    
+week2:
+  monday:
+    - Machine Learning Methods: 
+        type: Lecture
+        elective: true
+        link:
+    - Risk Theory:
+        type: Practice
+        elective: true
+        link:
+    - The Basics of Economics:
+        type: Practice
+        elective: false
+        link:
+    - Machine Learning Methods:
+        type: Laboratory
+        elective: true
+        link:
+  tuesday:
+    - Computer Systems Architecture:
+        type: Lecture
+        elective: true
+        link:
+    - Control Theory:
+        type: Laboratory
+        elective: false
+        link:
+    - Markov Models and Their Applications:
+        type: Lecture
+        elective: true
+        link:
+    - Markov Models and Their Applications:
+        type: Practice
+        elective: true
+        link:
+    - English:
+        type: Practice
+        elective: false
+        link:
+  wednesday:
+    - Design of Highly Loaded Systems:
+        type: Lecture
+        elective: true
+        link:
+    - System Analysis:
+        type: Practice
+        elective: false
+        link:
+    - Stohastic Process:
+        type: Lecture
+        elective: true
+        link:
+    - Stohastic Process:
+        type: Practice
+        elective: true
+        link:
+    - System Analysis:
+        type: Lecture
+        elective: false
+        link:
+  thursday:
+    - Control Theory:
+        type: Lecture
+        elective: false
+        link:
+    - Fundamentals of Quantum Information:
+        type: Lecture
+        elective: true
+        link:
+    - Fundamentals of Quantum Information:
+        type: Practice
+        elective: true
+        link:
+    - Systems and Tools of Interactive Analysis:
+        type: Lecture
+        elective: true
+        link:
+  friday:
+    - Window
+    - Complex Information Protection Systems:
+        type: Lecture
+        elective: true
+        link:
+    - Pattern Recognition:
+        type: Lecture
+        elective: false
+        link:
+  saturday:
