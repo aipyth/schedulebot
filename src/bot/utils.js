@@ -14,7 +14,7 @@ module.exports = {
       try {
         res = this.statement()
         if (res !== undefined && res !== null) {
-          console.log(`repeatWhile condition ${res} at ${new Date()}`)
+          // console.log(`repeatWhile condition ${res} at ${new Date()}`)
           this.cb(res)
         }
       } catch (err) {

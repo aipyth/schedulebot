@@ -53,7 +53,7 @@ module.exports = {
       .atSeconds(1)
       .if(() => {
         const idx = schedule.nearestTimeIdx(new Date(), sendLinkBeforeMinutes);
-        console.log(`[eventCheck] idx = ${idx}`);
+        // console.log(`[eventCheck] idx = ${idx}`);
         return idx < 0 ? undefined : idx;
       }).then(async (res) => {
         console.log(`triggered on #${res} event`)
