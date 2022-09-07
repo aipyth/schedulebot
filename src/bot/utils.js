@@ -13,7 +13,7 @@ module.exports = {
       let res
       try {
         res = this.statement()
-        if (res) {
+        if (res !== undefined && res !== null) {
           console.log(`repeatWhile condition ${res} at ${new Date()}`)
           this.cb(res)
         }

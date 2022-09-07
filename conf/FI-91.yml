@@ -1,0 +1,144 @@
+week1:
+  monday:
+    - Machine Learning Methods: 
+        type: Lecture
+        elective: true
+    - Complex information Protection systems:
+        type: Practice
+        elective: true
+    - Risk Theory:
+        type: Lecture
+        elective: true
+    - Machine Learning Methods:
+        type: Laboratory
+        elective: true
+
+  tuesday:
+    - Computer Systems Architecture:
+        type: Lecture
+        elective: true
+    - Computer Systems Architecture:
+        type: Laboratory
+        elective: true
+    - Markov Models and Their Applications:
+        type: Lecture
+        elective: true
+    - Markov Models and Their Applications:
+        type: Practice
+        elective: true
+    - English:
+        type: Practice
+        elective: false
+  wednesday:
+    - Design of Highly Loaded Systems:
+        type: Lecture
+        elective: true
+    - Design of Highly Loaded Systems:
+        type: Laboratory
+        elective: true
+    - Stohastic Process:
+        type: Lecture
+        elective: true
+    - Stohastic Process:
+        type: Practice
+        elective: true
+    - System Analysis:
+        type: Lecture
+        elective: false
+  thursday:
+    - Control Theory:
+        type: Lecture
+        elective: false
+    - Fundamentals of Quantum Information:
+        type: Lecture
+        elective: true
+    - The Basics of Economics:
+        type: Lecture
+        elective: false
+    - Systems and Tools of Interactive Analysis:
+        type: Lecture
+        elective: true
+    - Systems and Tools of Interactive Analysis:
+        type: Laboratory
+        elective: true
+  friday:
+    - Window
+    - Complex Information Protection Systems:
+        type: Lecture
+        elective: true
+    - Pattern Recognition:
+        type: Lecture
+        elective: false
+    - Pattern Recognition:
+        type: Practice
+        elective: false
+  saturday:
+    
+week2:
+  monday:
+    - Machine Learning Methods: 
+        type: Lecture
+        elective: true
+    - Risk Theory:
+        type: Practice
+        elective: true
+    - The Basics of Economics:
+        type: Practice
+        elective: false
+    - Machine Learning Methods:
+        type: Laboratory
+        elective: true
+  tuesday:
+    - Computer Systems Architecture:
+        type: Lecture
+        elective: true
+    - Control Theory:
+        type: Laboratory
+        elective: false
+    - Markov Models and Their Applications:
+        type: Lecture
+        elective: true
+    - Markov Models and Their Applications:
+        type: Practice
+        elective: true
+    - English:
+        type: Practice
+        elective: false
+  wednesday:
+    - Design of Highly Loaded Systems:
+        type: Lecture
+        elective: true
+    - System Analysis:
+        type: Practice
+        elective: false
+    - Stohastic Process:
+        type: Lecture
+        elective: true
+    - Stohastic Process:
+        type: Practice
+        elective: true
+    - System Analysis:
+        type: Lecture
+        elective: false
+  thursday:
+    - Control Theory:
+        type: Lecture
+        elective: false
+    - Fundamentals of Quantum Information:
+        type: Lecture
+        elective: true
+    - Fundamentals of Quantum Information:
+        type: Practice
+        elective: true
+    - Systems and Tools of Interactive Analysis:
+        type: Lecture
+        elective: true
+  friday:
+    - Window
+    - Complex Information Protection Systems:
+        type: Lecture
+        elective: true
+    - Pattern Recognition:
+        type: Lecture
+        elective: false
+  saturday:
