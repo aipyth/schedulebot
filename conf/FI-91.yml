@@ -52,9 +52,7 @@ week1:
     - Fundamentals of Quantum Information:
         type: Lecture
         elective: true
-    - The Basics of Economics:
-        type: Lecture
-        elective: false
+    - Window
     - Systems and Tools of Interactive Analysis:
         type: Lecture
         elective: true
@@ -139,6 +137,9 @@ week2:
         type: Lecture
         elective: true
     - Pattern Recognition:
+        type: Lecture
+        elective: false
+    - The Basics of Economics:
         type: Lecture
         elective: false
   saturday:
