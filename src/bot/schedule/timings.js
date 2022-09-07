@@ -35,12 +35,10 @@ function getTimingsDate() {
     let now = new Date();
     const [nday, nmonth, nyear] = [now.getDate(), now.getMonth(), now.getFullYear()]
     now.setHours(ts[0], ts[1], 0);
-    console.dir({ now })
     now = tz.zonedTimeToUtc(now, doc['timezone'])
     now.setDate(nday)
     now.setMonth(nmonth)
     now.setFullYear(nyear)
-    console.dir({ now })
     tmgs.push(now);
   }
   return tmgs;
@@ -55,7 +53,7 @@ function nearestTimeIdx(toDate, byMinutes) {
   const times = getTimingsDate();
   const minutes = (msec) => msec > 0 ? msec / 60000 : Infinity;
   const index = times.findIndex(time => {
-    console.log(`[nearestTime] ${time} - ${toDate}`);
+    // console.log(`[nearestTime] ${time} - ${toDate}`);
     return minutes(time - toDate) <= byMinutes
   });
   return index;

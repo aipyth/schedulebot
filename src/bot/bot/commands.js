@@ -4,6 +4,8 @@ const schedule = require('../schedule');
 const keyboard = require('./keyboard');
 const storage = require('../storage');
 const { wrapEventsFor } = require("../schedule/wrap");
+const { utcToZonedTime } = require("date-fns-tz");
+const { doc } = require("../schedule");
 
 const repoLink = 'https://github.com/aipyth/schedulebot';
 
@@ -21,34 +23,6 @@ const askGroup = (bot) => async (chatId) => {
         : keyboard.buildGroupsKeyboard(),
     }
   });
-}
-
-const wrapEvents = async (events, userId) => {
-  const tmgs = schedule.getTimings();
-  let text = '';
-  for (let i = 0; i < events.length; i++) {
-    let eventName;
-    if (typeof(events[i]) == 'string' && events[i] == 'Opening') {
-      eventName = '';
-    } else if (typeof(events[i]) == 'string') {
-      eventName = events[i];
-    } else {
-      const name = Object.keys(events[i])[0];
-      try {
-        const choose = await storage.hasUserElected(userId, name)
-        eventName = choose ||
-          !(events[i][name]['elective'])
-            ? `${name} – ${events[i][name]['type']}`
-            : "";
-      } catch (e) {
-        console.log(e);
-        // bot.sendMessage(msg.chat.id, `Error gettings your electives.`);
-        return text
-      }
-    } 
-    text += `${tmgs[i]}\t ${eventName} \n`;
-  }
-  return text;
 }
 
 /**
@@ -95,7 +69,7 @@ const today = (bot) => async (msg) => {
     return;
   }
 
-  const today = new Date();
+  const today = utcToZonedTime(new Date(), doc['timezone']);
   const events = schedule.getEventsFor({
     date: today, group,
     electives: await storage.getUserElectives(msg.chat.id),
@@ -122,7 +96,7 @@ const tomorrow = (bot) => async (msg) => {
     return;
   }
 
-  const tomorrow = new Date(new Date().getTime() + (24 * 60 * 60 * 1000));
+  const tomorrow = utcToZonedTime(new Date(new Date().getTime() + (24 * 60 * 60 * 1000)), doc['timezone']);
   const events = schedule.getEventsFor({
     date: tomorrow, group,
     electives: await storage.getUserElectives(msg.chat.id),
@@ -149,11 +123,11 @@ const nextWeek = (bot) => async (msg) => {
     return;
   }
 
-  const today = new Date();
+  const today = utcToZonedTime(new Date(), doc['timezone']);
   const shift = (8 - today.getDay()) % 8;
   let text = '';
   for (let daynum = 0; daynum < 7; daynum++) {
-    const day = new Date(today.getTime() + ((shift + daynum) * 24 * 60 * 60 * 1000));
+    const day = utcToZonedTime(new Date(today.getTime() + ((shift + daynum) * 24 * 60 * 60 * 1000)), doc['timezone']);
     const events = schedule.getEventsFor({
       date: day, group,
       electives: await storage.getUserElectives(msg.chat.id),
@@ -181,11 +155,11 @@ const thisWeek = (bot) => async (msg) => {
     return;
   }
   // TODO: whatatafack is going here?
-  const today = new Date();
+  const today = utcToZonedTime(new Date(), doc['timezone']);
   const shift = (8 - today.getDay()) % 8;
   let text = '';
   for (let daynum = 0; daynum < shift; daynum++) {
-    const day = new Date(today.getTime() + (daynum * 24 * 60 * 60 * 1000));
+    const day = utcToZonedTime(new Date(today.getTime() + (daynum * 24 * 60 * 60 * 1000)), doc['timezone']);
     const events = schedule.getEventsFor({
       date: day, group,
       electives: await storage.getUserElectives(msg.chat.id),
