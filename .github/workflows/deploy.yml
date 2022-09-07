@@ -29,6 +29,9 @@ jobs:
         run: |
           echo ${{secrets.BOT_TOKEN}} > ./.env
 
+      - name: "Templating Ansible-vault"
+        run: ansible-playbook -vv templates/decrypt.yml -e @./templates/links.vault.yml --vault-password-file ~/.ansible-vault
+
       - name: "Building new images..."
         run: docker-compose -f docker-compose.yml build --force-rm
       
