@@ -23,10 +23,11 @@ function getDateEvents(time, group) {
   const localizedTime = tz.utcToZonedTime(time, doc['timezone'])
   const weekOrder = timings.getWeekNumber(localizedTime); 
   const docgroup = doc[group]
-  console.dir(doc)
   if (!docgroup) { throw new Error(group + "group does not exists") }
   const weekSchedule = docgroup['week' + weekOrder];
   const day = WEEKDAYS_ORDER[localizedTime.getDay().toString()];
+  if (!weekSchedule[day]) return []
+  if (!Array.isArray(weekSchedule[day])) return []
   return weekSchedule[day];
 }
 
@@ -49,7 +50,9 @@ function getElectives(group) {
   for (let n = 1; n <= wn; n++) {
     const currWeek = doc[group]['week' + n];
     for (let i = 0; i <= 6; i++) {
-      for (item of currWeek[WEEKDAYS_ORDER[i.toString()]]) {
+      const dayEvents = currWeek[WEEKDAYS_ORDER[i.toString()]]
+      if (!dayEvents) continue
+      for (item of dayEvents) {
         const eventName = Object.keys(item)[0]
         if (item[eventName]['elective']) {
           electives[eventName] = item[eventName];
