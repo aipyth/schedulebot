@@ -3,7 +3,6 @@ week1:
     - Computer networks: 
         type: Lection
         elective: true
-        link: http://meet.google.com/tpg-khxf-zbk
     - Internet resource security:
         type: Laboratory
         elective: true
@@ -68,7 +67,9 @@ week1:
         type: Lection
         elective: true
         link: https://bth.zoom.us/my/obaranovskyi
-    - Opening
+    - Civil safety:
+        type: Practive
+        elective: false
     - Civil safety:
         type: Lection
         elective: false

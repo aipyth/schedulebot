@@ -3,6 +3,7 @@ const TelegramBot = require("node-telegram-bot-api");
 const schedule = require('../schedule');
 const keyboard = require('./keyboard');
 const storage = require('../storage');
+const { wrapEventsFor } = require("../schedule/wrap");
 
 const repoLink = 'https://github.com/aipyth/schedulebot';
 
@@ -11,6 +12,7 @@ const repoLink = 'https://github.com/aipyth/schedulebot';
   * @returns {(chatId:TelegramBot.ChatId) => Promise}
   */
 const askGroup = (bot) => async (chatId) => {
+  await storage.addUser(chatId)
   const group = await storage.getUserGroup(chatId)
   bot.sendMessage(chatId, `Lets choose your group:`, {
     reply_markup: {
@@ -82,8 +84,8 @@ const group = (bot) => async (msg) => {
 }
 
 /**
-  * @param {TelegramBot.Message} msg
-  * @returns {(chatId:TelegramBot.ChatId) => Promise}
+  * @param {TelegramBot} bot
+  * @returns {(msg:TelegramBot.Message) => Promise}
   */
 const today = (bot) => async (msg) => {
   const group = await storage.getUserGroup(msg.chat.id)
@@ -94,13 +96,15 @@ const today = (bot) => async (msg) => {
   }
 
   const today = new Date();
-  const events = schedule.getDateEvents(today, group);
-  if (events === undefined) {
+  const events = schedule.getEventsFor({
+    date: today, group,
+    electives: await storage.getUserElectives(msg.chat.id),
+  });
+  if (events === undefined || events?.length === 0) {
     bot.sendMessage(msg.chat.id, `No events for today`);
     return;
   }
-  const text = await wrapEvents(events, msg.chat.id);
-  console.log(`text ${text}`);
+  const text = wrapEventsFor(events, today)
   bot.sendMessage(msg.chat.id, text, {
     parse_mode: 'Markdown',
   });
@@ -119,12 +123,15 @@ const tomorrow = (bot) => async (msg) => {
   }
 
   const tomorrow = new Date(new Date().getTime() + (24 * 60 * 60 * 1000));
-  const events = schedule.getDateEvents(tomorrow, group);
-  if (events == undefined) {
-    bot.sendMessage(msg.chat.id, `No events for tomorrow`);
+  const events = schedule.getEventsFor({
+    date: tomorrow, group,
+    electives: await storage.getUserElectives(msg.chat.id),
+  });
+  if (events === undefined || events?.length === 0) {
+    bot.sendMessage(msg.chat.id, `No events for today`);
     return;
   }
-  const text = await wrapEvents(events, msg.chat.id);
+  const text = wrapEventsFor(events, tomorrow)
   bot.sendMessage(msg.chat.id, text, {
     parse_mode: 'Markdown',
   });
@@ -147,11 +154,14 @@ const nextWeek = (bot) => async (msg) => {
   let text = '';
   for (let daynum = 0; daynum < 7; daynum++) {
     const day = new Date(today.getTime() + ((shift + daynum) * 24 * 60 * 60 * 1000));
-    const events = schedule.getDateEvents(day, group);
-    if (events == undefined) {
+    const events = schedule.getEventsFor({
+      date: day, group,
+      electives: await storage.getUserElectives(msg.chat.id),
+    });
+    if (events === undefined || events?.length === 0) {
       text += `${day.toDateString()} No events \n`;
     } else {
-      text += `***${day.toDateString()}*** \n${await wrapEvents(events, msg.chat.id)} \n`;
+      text += `${wrapEventsFor(events, day)}\n`;
     }
   }
   bot.sendMessage(msg.chat.id, text, {
@@ -176,11 +186,14 @@ const thisWeek = (bot) => async (msg) => {
   let text = '';
   for (let daynum = 0; daynum < shift; daynum++) {
     const day = new Date(today.getTime() + (daynum * 24 * 60 * 60 * 1000));
-    const events = schedule.getDateEvents(day, group);
-    if (events == undefined) {
+    const events = schedule.getEventsFor({
+      date: day, group,
+      electives: await storage.getUserElectives(msg.chat.id),
+    });
+    if (events === undefined || events?.length === 0) {
       text += `${day.toDateString()} No events \n`;
     } else {
-      text += `***${day.toDateString()}*** \n${await wrapEvents(events, msg.chat.id)} \n`;
+      text += `${wrapEventsFor(events, day)}\n`;
     }
   }
   bot.sendMessage(msg.chat.id, text, {
