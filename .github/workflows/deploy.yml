@@ -29,9 +29,6 @@ jobs:
         run: |
           echo ${{secrets.BOT_TOKEN}} > ./.env
 
-      - name: "Templating Ansible-vault"
-        run: ansible-playbook -vv templates/decrypt.yml -e @./templates/links.vault.yml --vault-password-file ~/.ansible-vault
-
       - name: "Decrypting links files"
         run: |
           ansible-vault decrypt conf/FI-91.links.yml --vault-password-file ~/.ansible-vault
