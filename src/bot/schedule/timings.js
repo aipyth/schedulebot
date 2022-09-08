@@ -54,7 +54,7 @@ function nearestTimeIdx(toDate, byMinutes) {
   const times = getTimingsDate();
   const minutes = (msec) => msec > 0 ? msec / 60000 : Infinity;
   const index = times.findIndex(time => {
-    // console.log(`[nearestTime] ${time} - ${toDate}`);
+    console.log(`[nearestTime] ${time} - ${toDate}`);
     return minutes(time - toDate) <= byMinutes
   });
   return index;
