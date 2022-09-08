@@ -34,8 +34,9 @@ function getTimingsDate() {
     const ts = t.split(':');
     let now = new Date();
     const [nday, nmonth, nyear] = [now.getDate(), now.getMonth(), now.getFullYear()]
-    now.setHours(ts[0], ts[1], 0);
     now = tz.zonedTimeToUtc(now, doc['timezone'])
+    now.setHours(ts[0], ts[1], 0);
+
     now.setDate(nday)
     now.setMonth(nmonth)
     now.setFullYear(nyear)
