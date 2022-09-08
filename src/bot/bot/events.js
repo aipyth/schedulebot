@@ -56,7 +56,7 @@ module.exports = {
         // console.log(`[eventCheck] idx = ${idx}`);
         return idx < 0 ? undefined : idx;
       }).then(async (res) => {
-        console.log(`triggered on #${res} event`)
+        console.log(`triggered on #${res} event at ${new Date()}`)
         storage.getAllUsers()
           .catch((reason) => {
             console.log(reason);
