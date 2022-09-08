@@ -2,6 +2,8 @@ const tz = require('date-fns-tz')
 const { doc } = require('./doc');
 const { getWeekNumber, getTimingsDate } = require('./timings');
 
+const gapConfigName = 'Window'
+
 const WEEKDAYS_ORDER = {
   '0': "sunday",
   '1': "monday",
@@ -30,8 +32,11 @@ function getDateEvents(time, group) {
   if (!Array.isArray(weekSchedule[day])) return []
   const timings = getTimingsDate()
   const events = weekSchedule[day].map((item) => {
-    if (typeof item !== 'object') return {
+    if (typeof item !== 'object' && item !== gapConfigName) return {
       name: item, elective: false, type: '',
+    }
+    if (item === gapConfigName) return {
+      name: '', elective: false, type: '',
     }
     const name = Object.keys(item)[0]
     return {
@@ -99,6 +104,7 @@ function getEventsFor({ group, electives, date }) {
 }
 
 module.exports = {
+  gapConfigName,
   weekdaysint: WEEKDAYS_ORDER,
   getDateEvents,
   getGroups,
