@@ -1,0 +1,9 @@
+---
+- name: Template links
+  hosts: localhost
+  tasks:
+    - name: decrypt links
+      shell: " ansible-vault decrypt {{ playbook_dir }}/conf/{{ item.name }} --vault-password-file=~/vault-password.txt"
+      loop:
+        - name: "FI-92.links.yml"
+        - name: "FI-91.links.yml"

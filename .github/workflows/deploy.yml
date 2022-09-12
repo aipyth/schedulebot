@@ -31,7 +31,7 @@ jobs:
 
       - name: "Decrypting links files"
         run: |
-          ansible-vault decrypt conf/FI-91.links.yml --vault-password-file ~/.ansible-vault
+           ansible-playbook -vv decrypt.yml 
 
       - name: "Building new images..."
         run: docker-compose -f docker-compose.yml build --force-rm
