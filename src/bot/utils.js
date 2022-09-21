@@ -25,7 +25,7 @@ module.exports = {
       this.till = () => {
         const now = new Date()
         const millisTill = new Date(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours(), now.getMinutes(), seconds % 60, 0) - now
-        console.log('till', millisTill, millisTill + 1000 * 60)
+        // console.log('till', millisTill, millisTill + 1000 * 60)
         return millisTill < 0 ? millisTill + 1000 * 60 : millisTill
       }
       return this
