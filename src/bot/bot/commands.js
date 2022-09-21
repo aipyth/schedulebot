@@ -69,15 +69,16 @@ const today = (bot) => async (msg) => {
     return;
   }
 
-  const today = utcToZonedTime(new Date(), doc['timezone']);
   const events = schedule.getEventsFor({
-    date: today, group,
+    date: new Date(),
+    group,
     electives: await storage.getUserElectives(msg.chat.id),
   });
   if (events === undefined || events?.length === 0) {
     bot.sendMessage(msg.chat.id, `No events for today`);
     return;
   }
+  const today = utcToZonedTime(new Date(), doc['timezone']);
   const text = wrapEventsFor(events, today)
   bot.sendMessage(msg.chat.id, text, {
     parse_mode: 'Markdown',
@@ -98,7 +99,8 @@ const tomorrow = (bot) => async (msg) => {
 
   const tomorrow = utcToZonedTime(new Date(new Date().getTime() + (24 * 60 * 60 * 1000)), doc['timezone']);
   const events = schedule.getEventsFor({
-    date: tomorrow, group,
+    date: tomorrow, dateLocalized: true,
+    group,
     electives: await storage.getUserElectives(msg.chat.id),
   });
   if (events === undefined || events?.length === 0) {
@@ -127,13 +129,19 @@ const nextWeek = (bot) => async (msg) => {
   const shift = (8 - today.getDay()) % 8;
   let text = '';
   for (let daynum = 0; daynum < 7; daynum++) {
-    const day = utcToZonedTime(new Date(today.getTime() + ((shift + daynum) * 24 * 60 * 60 * 1000)), doc['timezone']);
+
+    const day = new Date(
+      today.getTime() + ((shift + daynum) * 24 * 60 * 60 * 1000)
+    );
+
     const events = schedule.getEventsFor({
-      date: day, group,
+      date: day,
+      dateLocalized: true,
+      group,
       electives: await storage.getUserElectives(msg.chat.id),
     });
     if (events === undefined || events?.length === 0) {
-      text += `${day.toDateString()} No events \n`;
+      text += `***${day.toDateString()}*** No events \n\n`;
     } else {
       text += `${wrapEventsFor(events, day)}\n`;
     }
@@ -159,9 +167,11 @@ const thisWeek = (bot) => async (msg) => {
   const shift = (8 - today.getDay()) % 8;
   let text = '';
   for (let daynum = 0; daynum < shift; daynum++) {
-    const day = utcToZonedTime(new Date(today.getTime() + (daynum * 24 * 60 * 60 * 1000)), doc['timezone']);
+    const day = new Date(today.getTime() + (daynum * 24 * 60 * 60 * 1000));
     const events = schedule.getEventsFor({
-      date: day, group,
+      date: day,
+      dateLocalized: true,
+      group,
       electives: await storage.getUserElectives(msg.chat.id),
     });
     if (events === undefined || events?.length === 0) {

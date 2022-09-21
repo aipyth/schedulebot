@@ -55,7 +55,7 @@ module.exports = {
       .if(() => {
         const nowLocalized = utcToZonedTime(new Date(), doc['timezone'])
         const idx = schedule.nearestTimeIdx(nowLocalized, sendLinkBeforeMinutes);
-        console.log(`[eventCheck] idx = ${idx}`);
+        // console.log(`[eventCheck] idx = ${idx}`);
         return idx < 0 ? undefined : idx;
       }).then(async (res) => {
         console.log(`triggered on #${res} event`)

@@ -16,13 +16,14 @@ const WEEKDAYS_ORDER = {
 
 
 /** Get all event for time (date) of group
-  * @param {Date} time
+  * @param {Date} time not localized time
   * @param {string} group
+  * @param {boolean} timeLocalized
   * @throws {Error} If the group does not exist in configuration
   * @returns {{ name: string, type: string, elective: boolean, time: Date }[]}
   */
-function getDateEvents(time, group) {
-  const localizedTime = tz.utcToZonedTime(time, doc['timezone'])
+function getDateEvents(time, group, timeLocalized = false) {
+  const localizedTime = timeLocalized ? time : tz.utcToZonedTime(time, doc['timezone'])
   const weekOrder = getWeekNumber(localizedTime); 
   const docgroup = doc[group]
   if (!docgroup) { throw new Error(group + "group does not exists") }
@@ -91,16 +92,19 @@ function getElectives(group) {
 
 /** Returns the list of events for user taking in consideration
   * its electives
-  * @param {{ group: string, electives: string[], date: Date }}
+  * @param {{ group: string, electives: string[], date: Date, dateLocalized: boolean }}
   */
-function getEventsFor({ group, electives, date }) {
-  const events = getDateEvents(date, group)
-  return events.map((item) => {
+function getEventsFor({ group, electives, date, dateLocalized = false }) {
+  const events = getDateEvents(date, group, dateLocalized)
+  const cleared = events.map((item) => {
     if (item.elective === false || electives.includes(item.name)) {
       return item
     }
     return { name: '', type: '', elective: true, time: item.time }
   })
+  return cleared.every((value) => value.name === '' && value.type === '')
+    ? []
+    : cleared
 }
 
 module.exports = {
