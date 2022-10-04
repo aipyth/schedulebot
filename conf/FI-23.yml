@@ -1,0 +1,121 @@
+week1:
+  monday:
+    - Programming: 
+        type: Lecture
+        elective: false
+    - Programming:
+        type: Laboratory
+        elective: false
+    - Discrete mathematics:
+        type: Lecture
+        elective: false
+    - Math Analysis:
+        type: Practice
+        elective: false
+
+  tuesday:
+    - Ukrainian:
+        type: Practice
+        elective: false
+    - Operating system software:
+        type: Lecture
+        elective: false
+  wednesday:
+    - Discrete mathematics:
+        type: Practice
+        elective: false
+    - Discrete mathematics:
+        type: Lecture
+        elective: false
+    - Algebra & Geometry:
+        type: Practice
+        elective: false
+    - English:
+        type: Practice
+        elective: false
+  thursday:
+    - Programming:
+        type: Laboratory
+        elective: false
+    - Algebra & Geometry:
+        type: Lecture
+        elective: false
+    - Window
+    - Operating system software:
+        type: Practice
+        elective: false
+  friday:
+    - Programming:
+        type: Practice
+        elective: false
+    - Math Analysis:
+        type: Lecture
+        elective: false
+    - Life safety fundamentals:
+        type: Practice
+        elective: false
+    - Operating system software:
+        type: Practice
+        elective: false
+  saturday:
+    
+week2:
+  monday:
+    - Ukrainian: 
+        type: Lecture
+        elective: false
+    - Programming:
+        type: Practice
+        elective: false
+    - Discrete mathematics:
+        type: Lecture
+        elective: false
+    - Math Analysis:
+        type: Practice
+        elective: false
+  tuesday:
+    - Discrete mathematics:
+        type: Practice
+        elective: false
+    - Life safety fundamentals:
+        type: Lecture
+        elective: false
+    - Math Analysis:
+        type: Lecture
+        elective: false
+  wednesday:
+    - Discrete mathematics:
+        type: Practice
+        elective: false
+    - Discrete mathematics:
+        type: Lecture
+        elective: false
+    - Algebra & Geometry:
+        type: Practice
+        elective: false
+    - English:
+        type: Practice
+        elective: false
+  thursday:
+    - Programming:
+        type: Practice
+        elective: false
+    - Algebra & Geometry:
+        type: Lecture
+        elective: false
+    - Window
+    - Operating system software:
+        type: Practice
+        elective: false
+  friday:
+    - Programming:
+        type: Practice
+        elective: false
+    - Math Analysis:
+        type: Lecture
+        elective: false
+    - Window
+    - Operating system software:
+        type: Practice
+        elective: false
+  saturday:
