@@ -42,11 +42,11 @@ week1:
         elective: false
     - Window
     - Operating system software:
-        type: Practice
+        type: Laboratory
         elective: false
   friday:
     - Programming:
-        type: Practice
+        type: Laboratory
         elective: false
     - Math Analysis:
         type: Lecture
@@ -55,7 +55,7 @@ week1:
         type: Practice
         elective: false
     - Operating system software:
-        type: Practice
+        type: Laboratory
         elective: false
   saturday:
     
@@ -65,7 +65,7 @@ week2:
         type: Lecture
         elective: false
     - Programming:
-        type: Practice
+        type: Laboratory
         elective: false
     - Discrete mathematics:
         type: Lecture
@@ -98,24 +98,24 @@ week2:
         elective: false
   thursday:
     - Programming:
-        type: Practice
+        type: Laboratory
         elective: false
     - Algebra & Geometry:
         type: Lecture
         elective: false
     - Window
     - Operating system software:
-        type: Practice
+        type: Laboratory
         elective: false
   friday:
     - Programming:
-        type: Practice
+        type: Laboratory
         elective: false
     - Math Analysis:
         type: Lecture
         elective: false
     - Window
     - Operating system software:
-        type: Practice
+        type: Laboratory
         elective: false
   saturday:
