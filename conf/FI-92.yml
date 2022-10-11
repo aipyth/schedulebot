@@ -71,9 +71,10 @@ week1:
     - Pattern Recognition:
         type: Practice
         elective: false
-    - Control Theory:
+    - Window
+    - Risk Theory:
         type: Practice
-        elective: false
+        elective: true
   saturday:
     
 week2:
@@ -93,7 +94,9 @@ week2:
     - Computer Systems Architecture:
         type: Lecture
         elective: true
-    - Window
+    - Control Theory:
+        type: Practice
+        elective: false
     - Markov Models and Their Applications:
         type: Lecture
         elective: true
