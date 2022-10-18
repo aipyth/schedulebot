@@ -20,29 +20,34 @@ const sendUsersUpcomingEvent = async (bot, users, eventNumber) => {
     bot, users, eventNumber,
   })
   for (const chatId of users) {
-    const group = await storage.getUserGroup(chatId)
-    if (!group) { continue }
-    const event = schedule.getDateEvents(new Date(), group)[eventNumber];
-    if (event.name == schedule.gapConfigName) {
-      continue
-      // bot.sendMessage(chatId, event.name);
-    } else {
-      try {
-        const hasUserElected = await storage.hasUserElected(chatId, event.name)
+    try {
+      const group = await storage.getUserGroup(chatId)
+      if (!group) { continue }
+      const dateEvents = schedule.getDateEvents(new Date(), group)
+      const event = dateEvents[eventNumber];
+      if (event === undefined) continue
+      if (event.name == schedule.gapConfigName) {
+        continue
+        // bot.sendMessage(chatId, event.name);
+      } else {
+        try {
+          const hasUserElected = await storage.hasUserElected(chatId, event.name)
 
-        if (hasUserElected || !event.elective) {
-          const link = getLink(group, event.name, event.type)
-          bot.sendMessage(chatId,
-            `**${event.name}** \n*${event.type}* \n\n${link}`,
-            { parse_mode: 'Markdown' },
-          );
+          if (hasUserElected || !event.elective) {
+            const link = getLink(group, event.name, event.type)
+            bot.sendMessage(chatId,
+              `**${event.name}** \n*${event.type}* \n\n${link}`,
+              { parse_mode: 'Markdown' },
+            );
+          }
+        } catch (e) {
+          console.error(e)
         }
-      } catch (e) {
-        console.error(e)
-      }
-    } 
+      } 
+    } catch (e) {
+      console.error(e)
+    }
   }
-  
 }
 
 module.exports = {
