@@ -4,7 +4,7 @@ const wrapEventDetailed = ({ name, type, link }) => {
 }
 
 const wrapEventSimple = ({ time, name, type, link }) => {
-  const t = time.toLocaleTimeString('uk', { hour12: false, hour: '2-digit', minute: '2-digit' })
+  const t = time?.toLocaleTimeString('uk', { hour12: false, hour: '2-digit', minute: '2-digit' })
   return `${t}  ${name}   ${type}`
 }
 
