@@ -20,6 +20,9 @@ week1:
     - Operating system software:
         type: Lecture
         elective: false
+    - English:
+        type: Lecture
+        elective: false
   wednesday:
     - Discrete mathematics:
         type: Practice
@@ -103,7 +106,9 @@ week2:
     - Algebra & Geometry:
         type: Lecture
         elective: false
-    - Window
+    - English:
+        type: Lecture
+        elective: false
     - Operating system software:
         type: Laboratory
         elective: false
