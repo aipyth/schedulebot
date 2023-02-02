@@ -1,4 +1,3 @@
-
 const wrapEventDetailed = ({ name, type, link }) => {
   return `**${name}** \n${type} \n${link}`
 }

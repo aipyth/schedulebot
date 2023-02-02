@@ -8,6 +8,7 @@ module.exports = {
     if (token === undefined) { throw new Error('Invalid environment variable BOT_TOKEN') }
 
     const bot = new TelegramBot(token, { polling: true })
+    bot.getMe().then((b) => console.log(b))
 
     bot.on('polling_error', console.log)
 

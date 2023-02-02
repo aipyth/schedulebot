@@ -1,4 +1,5 @@
 const tz = require('date-fns-tz')
+const isWithinInterval = require('date-fns/isWithinInterval')
 const { doc } = require('./doc')
 const { getWeekNumber, getTimingsDate } = require('./timings')
 
@@ -23,6 +24,13 @@ const WEEKDAYS_ORDER = {
   */
 function getDateEvents (time, group, timeLocalized = false) {
   const localizedTime = timeLocalized ? time : tz.utcToZonedTime(time, doc.timezone)
+  const startDate = new Date(doc['start-date'])
+  const endDate = new Date(doc['end-date'])
+  const inStudyingPeriod = isWithinInterval(localizedTime, {
+    start: startDate,
+    end: endDate
+  })
+  if (!inStudyingPeriod) return []
   const weekOrder = getWeekNumber(localizedTime)
   const docgroup = doc[group]
   if (!docgroup) { throw new Error(group + 'group does not exists') }

@@ -8,6 +8,7 @@ const doc = load(readFileSync(scheduleFilePath, 'utf8'))
 
 const configsFolder = scheduleFilePath.split('/').slice(0, scheduleFilePath.split('/').length - 1).join('/') + '/'
 
+/** This function reads the groups from the groups.yml file and returns them as a dictionary. */
 function readGroups () {
   const groupNames = doc.groups
   const groups = {}
@@ -17,6 +18,9 @@ function readGroups () {
   return groups
 }
 
+/** Load links for all groups
+  * @returns {Record<string, Record<string, string>>} JSON object containing links for all groups
+  **/
 function readLinks () {
   const groupNames = doc.groups
   const links = {}

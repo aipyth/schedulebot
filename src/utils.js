@@ -1,14 +1,17 @@
 module.exports = {
   repeatWhile (timeout) {
     this.till = () => 0
+
     this.then = (cb) => {
       this.cb = cb
       return this
     }
+
     this.if = (statement) => {
       this.statement = statement
       return this
     }
+
     this.func = () => {
       let res
       try {
@@ -21,6 +24,7 @@ module.exports = {
         console.error(err)
       }
     }
+
     this.atSeconds = (seconds) => {
       this.till = () => {
         const now = new Date()
@@ -30,6 +34,7 @@ module.exports = {
       }
       return this
     }
+
     this.run = () => {
       setTimeout(() => {
         this.func()
