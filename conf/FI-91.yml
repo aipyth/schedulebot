@@ -1,145 +1,155 @@
 week1:
   monday:
-    - Machine Learning Methods: 
+    - Methods of Applied Statistics: 
         type: Lecture
         elective: true
-    - Complex information Protection systems:
-        type: Practice
-        elective: true
-    - Risk Theory:
+    - Information Security Control:
         type: Lecture
-        elective: true
-    - Machine Learning Methods:
-        type: Laboratory
-        elective: true
-
-  tuesday:
-    - Computer Systems Architecture:
-        type: Lecture
-        elective: true
-    - Computer Systems Architecture:
-        type: Laboratory
-        elective: true
-    - Markov Models and Their Applications:
-        type: Lecture
-        elective: true
-    - Markov Models and Their Applications:
-        type: Practice
         elective: true
     - English:
         type: Practice
         elective: false
-  wednesday:
-    - Design of Highly Loaded Systems:
-        type: Lecture
-        elective: true
-    - Design of Highly Loaded Systems:
+    - Data Science:
         type: Laboratory
-        elective: true
-    - Stohastic Process:
+        elective: false
+    - Modern Methods of Algebra and Geometry:
         type: Lecture
         elective: true
-    - Stohastic Process:
+  tuesday:
+    - Blockchain and Cryptocurrencies:
         type: Practice
         elective: true
-    - System Analysis:
+    - Modern Methods of Algebra and Geometry:
+        type: Lecture
+        elective: true
+    - Data Science:
         type: Lecture
         elective: false
-  thursday:
-    - Control Theory:
+    - Nonlinear Analysis:
         type: Lecture
-        elective: false
-    - Fundamentals of Quantum Information:
+        elective: true
+    - Methods of Applied Statistics: 
+        type: Laboratory
+        elective: true
+  wednesday:
+    - Information Security Control:
         type: Lecture
+        elective: true
+    - LaTeX:
+        type: Practice
+        elective: true
+    - Modern Methods of Algebra and Geometry:
+        type: Practice
         elective: true
     - Window
-    - Systems and Tools of Interactive Analysis:
+    - Blockchain and Cryptocurrencies:
         type: Lecture
         elective: true
-    - Systems and Tools of Interactive Analysis:
-        type: Laboratory
+  thursday:
+    - Methods of Applied Statistics: 
+        type: Lecture
+        elective: true
+    - LaTeX:
+        type: Lecture
+        elective: true
+    - Nonlinear Analysis:
+        type: Lecture
+        elective: true
+    - Blockchain and Cryptocurrencies:
+        type: Lecture
+        elective: true
+    - Nonlinear Analysis:
+        type: Practice
         elective: true
   friday:
-    - Window
-    - Complex Information Protection Systems:
+    - Applied Problems of Data Science:
         type: Lecture
         elective: true
-    - Pattern Recognition:
+    - Applied Problems of Data Science:
+        type: Laboratory
+        elective: true
+    - Process' Modeling:
         type: Lecture
         elective: false
-    - Pattern Recognition:
-        type: Practice
+    - Process' Modeling:
+        type: Laboratory
         elective: false
   saturday:
     
 week2:
   monday:
-    - Machine Learning Methods: 
+    - Methods of Applied Statistics: 
         type: Lecture
         elective: true
-    - Risk Theory:
-        type: Practice
-        elective: true
-    - The Basics of Economics:
-        type: Practice
-        elective: false
-    - Machine Learning Methods:
-        type: Laboratory
-        elective: true
-  tuesday:
-    - Computer Systems Architecture:
+    - Information Security Control:
         type: Lecture
-        elective: true
-    - Control Theory:
-        type: Laboratory
-        elective: false
-    - Markov Models and Their Applications:
-        type: Lecture
-        elective: true
-    - Markov Models and Their Applications:
-        type: Practice
         elective: true
     - English:
         type: Practice
         elective: false
+    - Data Science:
+        type: Laboratory
+        elective: false
+    - Modern Methods of Algebra and Geometry:
+        type: Lecture
+        elective: true
+  tuesday:
+    - Blockchain and Cryptocurrencies:
+        type: Practice
+        elective: true
+    - Modern Methods of Algebra and Geometry:
+        type: Lecture
+        elective: true
+    - Data Science:
+        type: Lecture
+        elective: false
+    - Nonlinear Analysis:
+        type: Lecture
+        elective: true
+    - Methods of Applied Statistics: 
+        type: Laboratory
+        elective: true
   wednesday:
-    - Design of Highly Loaded Systems:
+    - Information Security Control:
         type: Lecture
         elective: true
-    - System Analysis:
-        type: Practice
-        elective: false
-    - Stohastic Process:
-        type: Lecture
-        elective: true
-    - Stohastic Process:
+    - LaTeX:
         type: Practice
         elective: true
-    - System Analysis:
+    - Modern Methods of Algebra and Geometry:
+        type: Practice
+        elective: true
+    - Window
+    - Blockchain and Cryptocurrencies:
         type: Lecture
-        elective: false
+        elective: true
   thursday:
-    - Control Theory:
-        type: Lecture
-        elective: false
-    - Fundamentals of Quantum Information:
+    - Methods of Applied Statistics: 
         type: Lecture
         elective: true
-    - Fundamentals of Quantum Information:
+    - LaTeX:
+        type: Lecture
+        elective: true
+    - Nonlinear Analysis:
+        type: Lecture
+        elective: true
+    - Blockchain and Cryptocurrencies:
+        type: Lecture
+        elective: true
+    - Nonlinear Analysis:
         type: Practice
-        elective: true
-    - Systems and Tools of Interactive Analysis:
-        type: Lecture
         elective: true
   friday:
-    - Window
-    - Complex Information Protection Systems:
+    - Applied Problems of Data Science:
         type: Lecture
         elective: true
-    - Pattern Recognition:
+    - Applied Problems of Data Science:
+        type: Laboratory
+        elective: true
+    - Process' Modeling:
         type: Lecture
         elective: false
-    - The Basics of Economics:
-        type: Lecture
+    - Process' Modeling:
+        type: Laboratory
         elective: false
   saturday:
