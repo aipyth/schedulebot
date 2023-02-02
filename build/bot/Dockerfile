@@ -10,10 +10,10 @@ FROM node:18-alpine AS base
 
 WORKDIR /app
 
-COPY src/bot/package.json src/bot/yarn.lock ./
+COPY package.json yarn.lock ./
 
 RUN yarn install
 
-COPY src/bot .
+COPY src/ .
 
 ENTRYPOINT [ "yarn", "run", "start" ]

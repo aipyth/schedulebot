@@ -1,13 +1,11 @@
-const TelegramBot = require("node-telegram-bot-api");
+const schedule = require('../schedule')
+const keyboard = require('./keyboard')
+const storage = require('../storage')
+const { wrapEventsFor } = require('../schedule/wrap')
+const { utcToZonedTime } = require('date-fns-tz')
+const { doc } = require('../schedule')
 
-const schedule = require('../schedule');
-const keyboard = require('./keyboard');
-const storage = require('../storage');
-const { wrapEventsFor } = require("../schedule/wrap");
-const { utcToZonedTime } = require("date-fns-tz");
-const { doc } = require("../schedule");
-
-const repoLink = 'https://github.com/aipyth/schedulebot';
+const repoLink = 'https://github.com/aipyth/schedulebot'
 
 /**
   * @param {TelegramBot} bot
@@ -16,13 +14,13 @@ const repoLink = 'https://github.com/aipyth/schedulebot';
 const askGroup = (bot) => async (chatId) => {
   await storage.addUser(chatId)
   const group = await storage.getUserGroup(chatId)
-  bot.sendMessage(chatId, `Lets choose your group:`, {
+  bot.sendMessage(chatId, 'Lets choose your group:', {
     reply_markup: {
       inline_keyboard: group
         ? keyboard.buildGroupsKeyboard([group])
-        : keyboard.buildGroupsKeyboard(),
+        : keyboard.buildGroupsKeyboard()
     }
-  });
+  })
 }
 
 /**
@@ -30,20 +28,20 @@ const askGroup = (bot) => async (chatId) => {
   * @returns {(chatId:TelegramBot.ChatId) => Promise}
   */
 const onStart = (bot) => async (msg) => {
-  const chatId = msg.chat.id;
+  const chatId = msg.chat.id
   bot.sendMessage(chatId, `Hi! Here you can get your schedule and get link one minute before the lesson.
 
-This bot is opensource and you can view it here ${repoLink} as well as add your group schedule by creating pull-request.`);
+This bot is opensource and you can view it here ${repoLink} as well as add your group schedule by creating pull-request.`)
 
   try {
     const result = await storage.addUser(chatId)
     // const result = await storage.getUserGroup(chatId)
-    if (result == 0) {
-      await askGroup(bot)(chatId);
+    if (result === 0) {
+      await askGroup(bot)(chatId)
     }
   } catch (e) {
-    console.error(e);
-    bot.sendMessage(chatId, `Could not add you to the database.`);
+    console.error(e)
+    bot.sendMessage(chatId, 'Could not add you to the database.')
   }
 }
 
@@ -54,7 +52,7 @@ This bot is opensource and you can view it here ${repoLink} as well as add your 
 const group = (bot) => async (msg) => {
   const chatId = msg.chat.id
   await storage.deleteUserGroup(chatId)
-  await askGroup(bot)(chatId);
+  await askGroup(bot)(chatId)
 }
 
 /**
@@ -64,25 +62,25 @@ const group = (bot) => async (msg) => {
 const today = (bot) => async (msg) => {
   const group = await storage.getUserGroup(msg.chat.id)
   if (!group) {
-    bot.sendMessage(msg.chat.id, `You haven't set your group`);
-    await askGroup(bot)(msg.chat.id);
-    return;
+    bot.sendMessage(msg.chat.id, 'You haven\'t set your group')
+    await askGroup(bot)(msg.chat.id)
+    return
   }
 
   const events = schedule.getEventsFor({
     date: new Date(),
     group,
-    electives: await storage.getUserElectives(msg.chat.id),
-  });
+    electives: await storage.getUserElectives(msg.chat.id)
+  })
   if (events === undefined || events?.length === 0) {
-    bot.sendMessage(msg.chat.id, `No events for today`);
-    return;
+    bot.sendMessage(msg.chat.id, 'No events for today')
+    return
   }
-  const today = utcToZonedTime(new Date(), doc['timezone']);
+  const today = utcToZonedTime(new Date(), doc.timezone)
   const text = wrapEventsFor(events, today)
   bot.sendMessage(msg.chat.id, text, {
-    parse_mode: 'Markdown',
-  });
+    parse_mode: 'Markdown'
+  })
 }
 
 /**
@@ -92,25 +90,26 @@ const today = (bot) => async (msg) => {
 const tomorrow = (bot) => async (msg) => {
   const group = await storage.getUserGroup(msg.chat.id)
   if (!group) {
-    bot.sendMessage(msg.chat.id, `You haven't set your group`);
-    await askGroup(bot)(msg.chat.id);
-    return;
+    bot.sendMessage(msg.chat.id, 'You haven\'t set your group')
+    await askGroup(bot)(msg.chat.id)
+    return
   }
 
-  const tomorrow = utcToZonedTime(new Date(new Date().getTime() + (24 * 60 * 60 * 1000)), doc['timezone']);
+  const tomorrow = utcToZonedTime(new Date(new Date().getTime() + (24 * 60 * 60 * 1000)), doc.timezone)
   const events = schedule.getEventsFor({
-    date: tomorrow, dateLocalized: true,
+    date: tomorrow,
+    dateLocalized: true,
     group,
-    electives: await storage.getUserElectives(msg.chat.id),
-  });
+    electives: await storage.getUserElectives(msg.chat.id)
+  })
   if (events === undefined || events?.length === 0) {
-    bot.sendMessage(msg.chat.id, `No events for today`);
-    return;
+    bot.sendMessage(msg.chat.id, 'No events for today')
+    return
   }
   const text = wrapEventsFor(events, tomorrow)
   bot.sendMessage(msg.chat.id, text, {
-    parse_mode: 'Markdown',
-  });
+    parse_mode: 'Markdown'
+  })
 }
 
 /**
@@ -120,35 +119,34 @@ const tomorrow = (bot) => async (msg) => {
 const nextWeek = (bot) => async (msg) => {
   const group = await storage.getUserGroup(msg.chat.id)
   if (!group) {
-    bot.sendMessage(msg.chat.id, `You haven't set your group`);
-    await askGroup(bot)(msg.chat.id);
-    return;
+    bot.sendMessage(msg.chat.id, 'You haven\'t set your group')
+    await askGroup(bot)(msg.chat.id)
+    return
   }
 
-  const today = utcToZonedTime(new Date(), doc['timezone']);
-  const shift = (8 - today.getDay()) % 8;
-  let text = '';
+  const today = utcToZonedTime(new Date(), doc.timezone)
+  const shift = (8 - today.getDay()) % 8
+  let text = ''
   for (let daynum = 0; daynum < 7; daynum++) {
-
     const day = new Date(
       today.getTime() + ((shift + daynum) * 24 * 60 * 60 * 1000)
-    );
+    )
 
     const events = schedule.getEventsFor({
       date: day,
       dateLocalized: true,
       group,
-      electives: await storage.getUserElectives(msg.chat.id),
-    });
+      electives: await storage.getUserElectives(msg.chat.id)
+    })
     if (events === undefined || events?.length === 0) {
-      text += `***${day.toDateString()}*** No events \n\n`;
+      text += `***${day.toDateString()}*** No events \n\n`
     } else {
-      text += `${wrapEventsFor(events, day)}\n`;
+      text += `${wrapEventsFor(events, day)}\n`
     }
   }
   bot.sendMessage(msg.chat.id, text, {
-    parse_mode: 'Markdown',
-  });
+    parse_mode: 'Markdown'
+  })
 }
 
 /**
@@ -158,34 +156,34 @@ const nextWeek = (bot) => async (msg) => {
 const thisWeek = (bot) => async (msg) => {
   const group = await storage.getUserGroup(msg.chat.id)
   if (!group) {
-    bot.sendMessage(msg.chat.id, `You haven't set your group`);
-    await askGroup(bot)(msg.chat.id);
-    return;
+    bot.sendMessage(msg.chat.id, 'You haven\'t set your group')
+    await askGroup(bot)(msg.chat.id)
+    return
   }
   // TODO: whatatafack is going here?
-  const today = utcToZonedTime(new Date(), doc['timezone']);
-  const shift = (8 - today.getDay()) % 8;
-  let text = '';
+  const today = utcToZonedTime(new Date(), doc.timezone)
+  const shift = (8 - today.getDay()) % 8
+  let text = ''
   for (let daynum = 0; daynum < shift; daynum++) {
-    const day = new Date(today.getTime() + (daynum * 24 * 60 * 60 * 1000));
+    const day = new Date(today.getTime() + (daynum * 24 * 60 * 60 * 1000))
     const events = schedule.getEventsFor({
       date: day,
       dateLocalized: true,
       group,
-      electives: await storage.getUserElectives(msg.chat.id),
-    });
+      electives: await storage.getUserElectives(msg.chat.id)
+    })
     if (events === undefined || events?.length === 0) {
-      text += `${day.toDateString()} No events \n`;
+      text += `${day.toDateString()} No events \n`
     } else {
-      text += `${wrapEventsFor(events, day)}\n`;
+      text += `${wrapEventsFor(events, day)}\n`
     }
   }
   bot.sendMessage(msg.chat.id, text, {
-    parse_mode: 'Markdown',
-  });
+    parse_mode: 'Markdown'
+  })
 }
 
-const callback_processers = {
+const callbackProcessers = {
 /**
   * @type {(bot:TelegramBot) => (callbackQuery:import("node-telegram-bot-api").CallbackQuery) => Promise}
   */
@@ -200,7 +198,7 @@ const callback_processers = {
       await storage.addUserElective(userId, elected)
     }
     const group = await storage.getUserGroup(userId)
-    bot.answerCallbackQuery(callbackQuery.id);
+    bot.answerCallbackQuery(callbackQuery.id)
     bot.editMessageReplyMarkup({
       inline_keyboard: keyboard.buildElectivesKeyboard(group, await storage.getUserElectives(userId))
     }, {
@@ -209,12 +207,12 @@ const callback_processers = {
     })
   },
 
-/**
+  /**
   * @type {(bot:TelegramBot) => (callbackQuery:import("node-telegram-bot-api").CallbackQuery) => Promise}
   */
   [keyboard.groupsButtonRegexp]: (bot) => async (callbackQuery) => {
     const chosen = RegExp(keyboard.groupsButtonRegexp)
-      .exec(callbackQuery.data)[1];
+      .exec(callbackQuery.data)[1]
     const userId = callbackQuery.from.id
     const userGroup = await storage.getUserGroup(userId)
     if (userGroup === chosen) {
@@ -227,42 +225,41 @@ const callback_processers = {
         await storage.removeUserElective(userId, elective)
       }
 
-      bot.sendMessage(userId, `Choose your electives now:`, {
+      bot.sendMessage(userId, 'Choose your electives now:', {
         reply_markup: {
-          inline_keyboard: keyboard.buildElectivesKeyboard(chosen),
+          inline_keyboard: keyboard.buildElectivesKeyboard(chosen)
         }
-      });
+      })
     }
 
-
-    bot.answerCallbackQuery(callbackQuery.id);
+    bot.answerCallbackQuery(callbackQuery.id)
     bot.editMessageReplyMarkup({
       inline_keyboard: keyboard.buildGroupsKeyboard([chosen])
     }, {
       chat_id: callbackQuery.from.id,
       message_id: callbackQuery.message.message_id
     })
-  },
+  }
 }
 
-function addCommands(bot) {
-  bot.onText(/\/start/, onStart(bot));
+function addCommands (bot) {
+  bot.onText(/\/start/, onStart(bot))
 
-  bot.onText(/\/today/, today(bot));
-  bot.onText(/\/tomorrow/, tomorrow(bot));
-  bot.onText(/\/nextweek/, nextWeek(bot));
-  bot.onText(/\/week/, thisWeek(bot));
-  bot.onText(/\/group/, group(bot));
+  bot.onText(/\/today/, today(bot))
+  bot.onText(/\/tomorrow/, tomorrow(bot))
+  bot.onText(/\/nextweek/, nextWeek(bot))
+  bot.onText(/\/week/, thisWeek(bot))
+  bot.onText(/\/group/, group(bot))
 
   bot.on('callback_query', async (callbackQuery) => {
-    for (const r of Object.keys(callback_processers)) {
+    for (const r of Object.keys(callbackProcessers)) {
       if (RegExp(r).test(callbackQuery.data)) {
-        callback_processers[r](bot)(callbackQuery);
+        callbackProcessers[r](bot)(callbackQuery)
       }
     }
-  });
+  })
 }
 
 module.exports = {
-  addCommands,
+  addCommands
 }

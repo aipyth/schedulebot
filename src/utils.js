@@ -1,5 +1,5 @@
 module.exports = {
-  repeatWhile(timeout) {
+  repeatWhile (timeout) {
     this.till = () => 0
     this.then = (cb) => {
       this.cb = cb
@@ -37,5 +37,5 @@ module.exports = {
       }, this.till())
     }
     return this
-  },
+  }
 }

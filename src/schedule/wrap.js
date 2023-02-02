@@ -18,13 +18,16 @@ const wrapEventsFor = (events, date) => {
     wrappedEvents += wrapEventSimple(event) + '\n'
   }
   const todayDate = date.toLocaleDateString('en', {
-    weekday: 'short', year: 'numeric',
-    month: 'short', day: 'numeric' })
+    weekday: 'short',
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  })
   return `***${todayDate}***\n${wrappedEvents}`
 }
 
 module.exports = {
   wrapEventSimple,
   wrapEventDetailed,
-  wrapEventsFor,
+  wrapEventsFor
 }

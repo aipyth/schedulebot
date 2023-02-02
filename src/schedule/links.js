@@ -6,13 +6,13 @@ const { doc } = require('./doc')
   * @param {type} string
   * @returns {string}
   */
-function getLink(group, course, type) {
+function getLink (group, course, type) {
   const grouplinks = doc.links[group]
-  if (grouplinks == undefined) return ''
-  if (grouplinks[course] == undefined) return ''
+  if (grouplinks === undefined) return ''
+  if (grouplinks[course] === undefined) return ''
   return grouplinks[course][type] || ''
 }
 
 module.exports = {
-  getLink,
+  getLink
 }

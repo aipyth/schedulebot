@@ -1,15 +1,15 @@
-const { readFileSync } = require("fs");
+const { readFileSync } = require('fs')
 const { load } = require('js-yaml')
 
-const scheduleFilePath = process.env['SCHEDULE_FILE_PATH']
+const scheduleFilePath = process.env.SCHEDULE_FILE_PATH
 if (!scheduleFilePath) { throw new Error('no SCHEDULE_FILE_PATH specified') }
 
-const doc = load(readFileSync(scheduleFilePath, 'utf8'));
+const doc = load(readFileSync(scheduleFilePath, 'utf8'))
 
 const configsFolder = scheduleFilePath.split('/').slice(0, scheduleFilePath.split('/').length - 1).join('/') + '/'
 
-function readGroups() {
-  const groupNames = doc['groups']
+function readGroups () {
+  const groupNames = doc.groups
   const groups = {}
   for (const groupName of groupNames) {
     groups[groupName] = load(readFileSync(configsFolder + groupName + '.yml', 'utf8'))
@@ -17,8 +17,8 @@ function readGroups() {
   return groups
 }
 
-function readLinks() {
-  const groupNames = doc['groups']
+function readLinks () {
+  const groupNames = doc.groups
   const links = {}
   for (const groupName of groupNames) {
     links[groupName] = load(readFileSync(
@@ -34,6 +34,6 @@ module.exports = {
   doc: {
     ...doc,
     ...readGroups(),
-    links: readLinks(),
-  },
+    links: readLinks()
+  }
 }
