@@ -48,7 +48,7 @@ week1:
     - Window
     - Discrete mathematics:
         type: Consultation
-        elective: true
+        elective: false
   friday:
     - Mathematical logic and theory of algorithms:
         type: Practice
