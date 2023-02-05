@@ -25,8 +25,21 @@ const wrapEventsFor = (events, date) => {
   return `***${todayDate}***\n${wrappedEvents}`
 }
 
+/** Wraps all links records into a human readable string.
+  * @params {Record<string, string>} links
+  */
+function wrapEventLinks (links) {
+  let wrapped = ''
+  for (const eventType of Object.keys(links)) {
+    wrapped += `***${eventType}***\n${links[eventType]}`
+    wrapped += '\n\n'
+  }
+  return wrapped
+}
+
 module.exports = {
   wrapEventSimple,
   wrapEventDetailed,
-  wrapEventsFor
+  wrapEventsFor,
+  wrapEventLinks
 }

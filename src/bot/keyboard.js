@@ -4,6 +4,8 @@ const electiveButtonRegexp = 'elective:(.+)'
 const electiveButtonPrefix = 'elective:'
 const groupsButtonRegexp = 'groups:(.+)'
 const groupsButtonPrefix = 'groups:'
+const linksButtonRegexp = 'links:(.+)'
+const linksButtonPrefix = 'links:'
 
 /**
   * @param {string} group
@@ -25,6 +27,21 @@ const buildElectivesKeyboard = (group, elected = []) => {
         callback_data: electiveButtonPrefix + elect
       }])
     }
+  }
+  return kb
+}
+
+/**
+  * @param {string} group
+  */
+const buildAllEventsToLinksKeyboard = (group) => {
+  const events = schedule.getAllEventsForGroup(group)
+  const kb = []
+  for (const ev of Object.keys(events)) {
+    kb.push([{
+      text: ev,
+      callback_data: linksButtonPrefix + ev
+    }])
   }
   return kb
 }
@@ -57,5 +74,8 @@ module.exports = {
   groupsButtonRegexp,
   groupsButtonPrefix,
   buildElectivesKeyboard,
-  buildGroupsKeyboard
+  buildGroupsKeyboard,
+  linksButtonRegexp,
+  linksButtonPrefix,
+  buildAllEventsToLinksKeyboard
 }

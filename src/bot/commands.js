@@ -1,9 +1,9 @@
 const schedule = require('../schedule')
 const keyboard = require('./keyboard')
 const storage = require('../storage')
-const { wrapEventsFor } = require('../schedule/wrap')
+const { wrapEventsFor, wrapEventLinks } = require('../schedule/wrap')
 const { utcToZonedTime } = require('date-fns-tz')
-const { doc } = require('../schedule')
+const { doc, getAllLinks } = require('../schedule')
 
 const repoLink = 'https://github.com/aipyth/schedulebot'
 
@@ -113,7 +113,7 @@ const tomorrow = (bot) => async (msg) => {
 }
 
 /**
-  * @param {TelegramBot.Message} msg
+  * @param {TelegramBot} bot
   * @returns {(chatId:TelegramBot.ChatId) => Promise}
   */
 const nextWeek = (bot) => async (msg) => {
@@ -183,6 +183,22 @@ const thisWeek = (bot) => async (msg) => {
   })
 }
 
+const pickEventToDisplayLinks = (bot) => async (msg) => {
+  const chatId = msg.chat.id
+  const group = await storage.getUserGroup(chatId)
+  if (!group) {
+    bot.sendMessage(msg.chat.id, 'You haven\'t set your group')
+    await askGroup(bot)(chatId)
+    return
+  }
+
+  bot.sendMessage(chatId, 'Pick an event to show links of', {
+    reply_markup: {
+      inline_keyboard: keyboard.buildAllEventsToLinksKeyboard(group)
+    }
+  })
+}
+
 const callbackProcessers = {
 /**
   * @type {(bot:TelegramBot) => (callbackQuery:import("node-telegram-bot-api").CallbackQuery) => Promise}
@@ -239,9 +255,28 @@ const callbackProcessers = {
       chat_id: callbackQuery.from.id,
       message_id: callbackQuery.message.message_id
     })
+  },
+  /**
+  * @type {(bot:TelegramBot) => (callbackQuery:import("node-telegram-bot-api").CallbackQuery) => Promise}
+  */
+  [keyboard.linksButtonRegexp]: (bot) => async (callbackQuery) => {
+    const chosen = RegExp(keyboard.linksButtonRegexp)
+      .exec(callbackQuery.data)[1]
+    const userId = callbackQuery.from.id
+    const userGroup = await storage.getUserGroup(userId)
+    bot.deleteMessage(callbackQuery.message.chat.id, callbackQuery.message.message_id)
+
+    const links = getAllLinks(userGroup, chosen)
+    bot.sendMessage(userId, `*${chosen}*\n` + wrapEventLinks(links), {
+      parse_mode: 'Markdown'
+    })
+    bot.answerCallbackQuery(callbackQuery.id)
   }
 }
 
+/**
+  * @type {(bot:TelegramBot) => undefined}
+  */
 function addCommands (bot) {
   bot.onText(/\/start/, onStart(bot))
 
@@ -250,6 +285,7 @@ function addCommands (bot) {
   bot.onText(/\/nextweek/, nextWeek(bot))
   bot.onText(/\/week/, thisWeek(bot))
   bot.onText(/\/group/, group(bot))
+  bot.onText(/\/links/, pickEventToDisplayLinks(bot))
 
   bot.on('callback_query', async (callbackQuery) => {
     for (const r of Object.keys(callbackProcessers)) {

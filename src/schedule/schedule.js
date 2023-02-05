@@ -101,6 +101,39 @@ function getElectives (group) {
   return electives
 }
 
+/** Get object of all events for given group
+  * @param {string} group
+  * @returns {{
+    *   name: string,
+    *   elective: boolean,
+    * }[]}
+  */
+function getAllEventsForGroup (group) {
+  const wn = doc.weekn
+  const events = {}
+  // for each week
+  for (let n = 1; n <= wn; n++) {
+    const currWeek = doc[group]['week' + n]
+    // for each day of the week
+    for (let i = 0; i <= 6; i++) {
+      const dayEvents = currWeek[WEEKDAYS_ORDER[i.toString()]]
+      if (!dayEvents) continue
+      // for each event of the day
+      for (const item of dayEvents) {
+        if (typeof item !== 'object') continue
+        const eventName = Object.keys(item)[0]
+        // BUG: event type is overwritten
+        events[eventName] = {
+          name: eventName,
+          // type: item[eventName],
+          elective: true
+        }
+      }
+    }
+  }
+  return events
+}
+
 /** Returns the list of events for user taking in consideration
   * its electives
   * @param {{ group: string, electives: string[], date: Date, dateLocalized: boolean }}
@@ -124,5 +157,6 @@ module.exports = {
   getDateEvents,
   getGroups,
   getElectives,
-  getEventsFor
+  getEventsFor,
+  getAllEventsForGroup
 }
