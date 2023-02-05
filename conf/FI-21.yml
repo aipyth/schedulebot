@@ -3,7 +3,7 @@ week1:
     - Mathematical logic and theory of algorithms:
         type: Lecture
         elective: false
-    - Algebra and geometry:
+    - Algebra & Geometry:
         type: Lecture
         elective: false
     - Programming:
@@ -42,7 +42,7 @@ week1:
     - Fundamentals of classical physics:
         type: Practice
         elective: false
-    - Algebra and geometry:
+    - Algebra & Geometry:
         type: Practice
         elective: false
     - Window
@@ -63,7 +63,7 @@ week2:
     - Mathematical logic and theory of algorithms:
         type: Lecture
         elective: false
-    - Algebra and geometry:
+    - Algebra & Geometry:
         type: Lecture
         elective: false
     - Programming:
@@ -100,7 +100,7 @@ week2:
     - Fundamentals of classical physics:
         type: Practice
         elective: false
-    - Algebra and geometry:
+    - Algebra & Geometry:
         type: Practice
         elective: false
   friday:

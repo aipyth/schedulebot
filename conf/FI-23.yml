@@ -1,27 +1,26 @@
 week1:
   monday:
-    - Programming: 
+    - Mathematical logic and theory of algorithms: 
         type: Lecture
         elective: false
-    - Programming:
-        type: Laboratory
-        elective: false
-    - Discrete mathematics:
+    - Algebra & Geometry:
         type: Lecture
         elective: false
     - Math Analysis:
         type: Practice
         elective: false
-
   tuesday:
-    - Ukrainian:
+    - Programming:
+        type: Lecture
+        elective: false
+    - Fundamentals of classical physics:
+        type: Lecture
+        elective: false
+    - History of science and technology:
         type: Practice
         elective: false
-    - Operating system software:
-        type: Lecture
-        elective: false
-    - English:
-        type: Lecture
+    - Life safety fundamentals:
+        type: Practice
         elective: false
   wednesday:
     - Discrete mathematics:
@@ -30,61 +29,58 @@ week1:
     - Discrete mathematics:
         type: Lecture
         elective: false
+    - Math Analysis:
+        type: Lecture
+        elective: false
+    - Programming:
+        type: Laboratory
+        elective: false
+  thursday:
+    - History of science and technology:
+        type: Lecture
+        elective: false
     - Algebra & Geometry:
+        type: Practice
+        elective: false
+    - Fundamentals of classical physics:
         type: Practice
         elective: false
     - English:
         type: Practice
         elective: false
-  thursday:
-    - Programming:
-        type: Laboratory
-        elective: false
-    - Algebra & Geometry:
-        type: Lecture
-        elective: false
-    - Window
-    - Operating system software:
-        type: Laboratory
+    - Discrete mathematics:
+        type: Consultation
         elective: false
   friday:
-    - Programming:
-        type: Laboratory
-        elective: false
-    - Math Analysis:
-        type: Lecture
-        elective: false
-    - Life safety fundamentals:
+    - Window
+    - Mathematical logic and theory of algorithms: 
         type: Practice
-        elective: false
-    - Operating system software:
-        type: Laboratory
         elective: false
   saturday:
     
 week2:
   monday:
-    - Ukrainian: 
+    - Mathematical logic and theory of algorithms: 
         type: Lecture
         elective: false
-    - Programming:
-        type: Laboratory
-        elective: false
-    - Discrete mathematics:
+    - Algebra & Geometry:
         type: Lecture
         elective: false
     - Math Analysis:
         type: Practice
         elective: false
   tuesday:
-    - Discrete mathematics:
+    - Programming:
+        type: Lecture
+        elective: false
+    - Fundamentals of classical physics:
+        type: Lecture
+        elective: false
+    - Fundamentals of classical physics:
         type: Practice
         elective: false
     - Life safety fundamentals:
-        type: Lecture
-        elective: false
-    - Math Analysis:
-        type: Lecture
+        type: Practice
         elective: false
   wednesday:
     - Discrete mathematics:
@@ -93,34 +89,30 @@ week2:
     - Discrete mathematics:
         type: Lecture
         elective: false
-    - Algebra & Geometry:
-        type: Practice
+    - Math Analysis:
+        type: Lecture
         elective: false
-    - English:
-        type: Practice
+    - Programming:
+        type: Laboratory
         elective: false
   thursday:
-    - Programming:
-        type: Laboratory
-        elective: false
+    - Window
     - Algebra & Geometry:
-        type: Lecture
+        type: Practice
+        elective: false
+    - Fundamentals of classical physics:
+        type: Practice
         elective: false
     - English:
-        type: Lecture
-        elective: false
-    - Operating system software:
-        type: Laboratory
+        type: Practice
         elective: false
   friday:
-    - Programming:
-        type: Laboratory
+    - Window
+    - Mathematical logic and theory of algorithms: 
+        type: Practice
         elective: false
     - Math Analysis:
         type: Lecture
         elective: false
-    - Window
-    - Operating system software:
-        type: Laboratory
-        elective: false
+    
   saturday:
