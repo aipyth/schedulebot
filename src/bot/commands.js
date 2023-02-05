@@ -287,6 +287,33 @@ function addCommands (bot) {
   bot.onText(/\/group/, group(bot))
   bot.onText(/\/links/, pickEventToDisplayLinks(bot))
 
+  bot.setMyCommands([
+    {
+      command: '/today',
+      description: 'events today'
+    },
+    {
+      command: '/tomorrow',
+      description: 'events tomorrow'
+    },
+    {
+      command: '/week',
+      description: 'this week\'s events'
+    },
+    {
+      command: '/nextweek',
+      description: 'next week\'s events'
+    },
+    {
+      command: '/group',
+      description: 'pick a group and electives'
+    },
+    {
+      command: '/links',
+      description: 'get all links for an event (course)'
+    }
+  ], {})
+
   bot.on('callback_query', async (callbackQuery) => {
     for (const r of Object.keys(callbackProcessers)) {
       if (RegExp(r).test(callbackQuery.data)) {
