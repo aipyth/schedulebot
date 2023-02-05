@@ -265,12 +265,18 @@ const callbackProcessers = {
     const userId = callbackQuery.from.id
     const userGroup = await storage.getUserGroup(userId)
     bot.deleteMessage(callbackQuery.message.chat.id, callbackQuery.message.message_id)
+    bot.answerCallbackQuery(callbackQuery.id)
 
     const links = getAllLinks(userGroup, chosen)
+    if (Object.keys(links).length === 0) {
+      bot.sendMessage(userId, `No links were specified for *${chosen}*.`, {
+        parse_mode: 'Markdown'
+      })
+      return
+    }
     bot.sendMessage(userId, `*${chosen}*\n` + wrapEventLinks(links), {
       parse_mode: 'Markdown'
     })
-    bot.answerCallbackQuery(callbackQuery.id)
   }
 }
 
