@@ -36,6 +36,7 @@ function getDateEvents (time, group, timeLocalized = false) {
   if (!docgroup) { throw new Error(group + 'group does not exists') }
   const weekSchedule = docgroup['week' + weekOrder]
   const day = WEEKDAYS_ORDER[localizedTime.getDay().toString()]
+  if (!weekSchedule) return []
   if (!weekSchedule[day]) return []
   if (!Array.isArray(weekSchedule[day])) return []
   const timings = getTimingsDate()
