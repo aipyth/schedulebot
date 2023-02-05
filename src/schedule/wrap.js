@@ -1,4 +1,3 @@
-
 const wrapEventDetailed = ({ name, type, link }) => {
   return `**${name}** \n${type} \n${link}`
 }
@@ -18,13 +17,29 @@ const wrapEventsFor = (events, date) => {
     wrappedEvents += wrapEventSimple(event) + '\n'
   }
   const todayDate = date.toLocaleDateString('en', {
-    weekday: 'short', year: 'numeric',
-    month: 'short', day: 'numeric' })
+    weekday: 'short',
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  })
   return `***${todayDate}***\n${wrappedEvents}`
+}
+
+/** Wraps all links records into a human readable string.
+  * @params {Record<string, string>} links
+  */
+function wrapEventLinks (links) {
+  let wrapped = ''
+  for (const eventType of Object.keys(links)) {
+    wrapped += `***${eventType}***\n${links[eventType]}`
+    wrapped += '\n\n'
+  }
+  return wrapped
 }
 
 module.exports = {
   wrapEventSimple,
   wrapEventDetailed,
   wrapEventsFor,
+  wrapEventLinks
 }
