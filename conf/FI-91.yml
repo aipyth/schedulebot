@@ -17,7 +17,7 @@ week1:
         elective: true
   tuesday:
     - Blockchain and Cryptocurrencies:
-        type: Practice
+        type: Lecture Kovalchuk
         elective: true
     - Modern Methods of Algebra and Geometry:
         type: Lecture
@@ -43,7 +43,7 @@ week1:
         elective: true
     - Window
     - Blockchain and Cryptocurrencies:
-        type: Lecture
+        type: Lecture Kudin
         elective: true
   thursday:
     - Methods of Applied Statistics: 
@@ -56,7 +56,7 @@ week1:
         type: Lecture
         elective: true
     - Blockchain and Cryptocurrencies:
-        type: Lecture
+        type: Lecture Kovalchuk
         elective: true
     - Nonlinear Analysis:
         type: Practice
@@ -95,7 +95,7 @@ week2:
         elective: true
   tuesday:
     - Blockchain and Cryptocurrencies:
-        type: Practice
+        type: Lecture Kovalchuk
         elective: true
     - Modern Methods of Algebra and Geometry:
         type: Lecture
@@ -121,7 +121,7 @@ week2:
         elective: true
     - Window
     - Blockchain and Cryptocurrencies:
-        type: Lecture
+        type: Lecture Kudin
         elective: true
   thursday:
     - Methods of Applied Statistics: 
@@ -134,7 +134,7 @@ week2:
         type: Lecture
         elective: true
     - Blockchain and Cryptocurrencies:
-        type: Lecture
+        type: Lecture Kovalchuk
         elective: true
     - Nonlinear Analysis:
         type: Practice
