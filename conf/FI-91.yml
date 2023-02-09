@@ -41,7 +41,9 @@ week1:
     - Modern Methods of Algebra and Geometry:
         type: Practice
         elective: true
-    - Window
+    - Information Security Control:
+        type: Practice
+        elective: true
     - Blockchain and Cryptocurrencies:
         type: Lecture Kudin
         elective: true
@@ -119,7 +121,9 @@ week2:
     - Modern Methods of Algebra and Geometry:
         type: Practice
         elective: true
-    - Window
+    - Information Security Control:
+        type: Practice
+        elective: true
     - Blockchain and Cryptocurrencies:
         type: Lecture Kudin
         elective: true
