@@ -36,6 +36,9 @@ jobs:
       - name: "Building new images..."
         run: docker-compose -f docker-compose.yml build --force-rm
       
+      - name: "Stopping services..."
+        run: docker-compose down 
+
       - name: "Recreating services..."
         run: docker-compose -f docker-compose.yml up -d --remove-orphans 
         
