@@ -49,7 +49,7 @@ week1:
         type: Practice
         elective: false
     - Discrete mathematics:
-        type: Consultation
+        type: Lecture
         elective: false
   friday:
     - Window
@@ -105,6 +105,9 @@ week2:
         elective: false
     - English:
         type: Practice
+        elective: false
+    - Discrete mathematics:
+        type: Lecture
         elective: false
   friday:
     - Window

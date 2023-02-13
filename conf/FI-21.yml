@@ -47,7 +47,7 @@ week1:
         elective: false
     - Window
     - Discrete mathematics:
-        type: Consultation
+        type: Lecture
         elective: false
   friday:
     - Mathematical logic and theory of algorithms:
@@ -102,6 +102,10 @@ week2:
         elective: false
     - Algebra & Geometry:
         type: Practice
+        elective: false
+    - Window
+    - Discrete mathematics:
+        type: Lecture
         elective: false
   friday:
     - Mathematical logic and theory of algorithms:
