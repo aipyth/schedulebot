@@ -33,7 +33,7 @@ week1:
         type: Lecture
         elective: false
     - Math Analysis:
-        type: Practice
+        type: Lecture
         elective: false
   thursday:
     - History of science and technology:
@@ -93,7 +93,7 @@ week2:
         type: Lecture
         elective: false
     - Math Analysis:
-        type: Practice
+        type: Lecture
         elective: false
   thursday:
     - Window
