@@ -83,7 +83,7 @@ week2:
         type: Practice
         elective: false
     - Fundamentals of classical physics:
-        type: Practice
+        type: Laboratory
         elective: false
   wednesday:
     - Discrete mathematics:
