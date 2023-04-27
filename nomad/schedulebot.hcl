@@ -42,7 +42,7 @@ job "schedulebot" {
         type     = "tcp"
         interval = "10s"
         timeout  = "1s"
-    }
+      }
     }
       config {
         image = "redis:7.0.7-alpine"
@@ -81,7 +81,7 @@ job "schedulebot" {
         SCHEDULE_FILE_PATH = "/configuration/schedule.yml"
       }
       service {
-        name = "simple-service"
+        name = "schedulebot"
         provider = "nomad"
       }
 
