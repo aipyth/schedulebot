@@ -27,21 +27,22 @@ jobs:
 
       - name: "Copying env files"
         run: |
-          echo ${{secrets.BOT_TOKEN}} > ./.env
+          echo "docker_auth_password = \"${{secrets.GITLAB_TOKEN}}\"" > ./nomad/vars.hcl
+
+      - name: "Authorizing in registry"
+        run: |
+           docker login -u baltazar1697 -p ${{secrets.GITLAB_TOKEN}} registry.gitlab.com
 
       - name: "Decrypting links files"
         run: |
            ansible-playbook -vv decrypt.yml 
 
       - name: "Building new images..."
-        run: docker-compose -f docker-compose.yml build --force-rm
+        run: docker build -t registry.gitlab.com/m11259/schedulebot:latest -f build/bot/Dockerfile .
       
-      - name: "Stopping services..."
-        run: docker-compose down 
+      - name: "Pushing to repo..."
+        run: docker push registry.gitlab.com/m11259/schedulebot:latest
 
       - name: "Recreating services..."
-        run: docker-compose -f docker-compose.yml up -d --remove-orphans 
-        
-      - name: "Removing unused images after build and recreate..."
-        run: docker image prune -f
+        run: nomad run -address=http://nmd.ipt-isef-techno.com -token=${{secrets.NOMAD_TOKEN}} -var-file="nomad/vars.hcl" nomad/schedulebot.hcl
 
