@@ -36,9 +36,7 @@ week1:
         type: Laboratory
         elective: false
   thursday:
-    - History of science and technology:
-        type: Lecture
-        elective: false
+    - Window
     - Algebra & Geometry:
         type: Practice
         elective: false
@@ -52,7 +50,9 @@ week1:
         type: Lecture
         elective: false
   friday:
-    - Window
+    - History of science and technology:
+        type: Lecture
+        elective: false
     - Mathematical logic and theory of algorithms: 
         type: Practice
         elective: false
@@ -114,6 +114,7 @@ week2:
     - Mathematical logic and theory of algorithms: 
         type: Practice
         elective: false
+    - Window
     - Math Analysis:
         type: Lecture
         elective: false
