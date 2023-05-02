@@ -36,9 +36,7 @@ week1:
         type: Lecture
         elective: false
   thursday:
-    - History of science and technology:
-        type: Lecture
-        elective: false
+    - Window
     - Fundamentals of classical physics:
         type: Practice
         elective: false
@@ -55,6 +53,10 @@ week1:
         elective: false
     - English:
         type: Practice
+        elective: false
+    - Window
+    - History of science and technology:
+        type: Lecture
         elective: false
   saturday:
     
@@ -114,6 +116,7 @@ week2:
     - English:
         type: Practice
         elective: false
+    - Window
     - Math Analysis:
         type: Lecture
         elective: false
