@@ -50,11 +50,13 @@ week1:
         type: Lecture
         elective: false
   friday:
-    - History of science and technology:
-        type: Lecture
-        elective: false
+    - Window
     - Mathematical logic and theory of algorithms: 
         type: Practice
+        elective: false
+    - Window
+    - History of science and technology:
+        type: Lecture
         elective: false
   saturday:
     
